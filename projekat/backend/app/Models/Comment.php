@@ -11,7 +11,7 @@ class Comment extends Model
 
     protected $fillable = ['text','user_id','article_id'];
     protected $table = 'comments';
-    protected $primary_key = 'id';
+    protected $primary_key = 'comment_id';
 
     public function users(){
 

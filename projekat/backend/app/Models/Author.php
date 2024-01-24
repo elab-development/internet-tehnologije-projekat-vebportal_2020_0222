@@ -11,7 +11,7 @@ class Author extends Model
 
     protected $fillable = ['name','surname'];
     protected $table = 'authors';
-    protected $primary_key = 'id';
+    protected $primary_key = 'author_id';
 
 
     public function articles(){

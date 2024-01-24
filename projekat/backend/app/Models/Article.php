@@ -12,7 +12,7 @@ class Article extends Model
 
     protected $fillable = ['title','content','publishing_date','author_id','category_id'];
     protected $table = 'aricles';
-    protected $primary_key = 'id';
+    protected $primary_key = 'article_id';
 
     public function authors(){
 
