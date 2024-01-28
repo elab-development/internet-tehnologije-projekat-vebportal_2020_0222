@@ -21,3 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/vrati',[ArticleController::class,'index']);
+
+//CRUD operacije vezane za clanke
+
+Route::resource('articles', ArticleController::class);
