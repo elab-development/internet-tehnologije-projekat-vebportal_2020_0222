@@ -11,7 +11,8 @@ class Result extends Model
 
     protected $fillable = ['team1_id','team2_id','points_team1','points_team2'];
     protected $table = 'results';
-    protected $primary_key = 'result_id';
+    protected $primaryKey = 'result_id';
+    public $timestamps = false;
 
     public function teams1(){
 

@@ -11,8 +11,9 @@ class Article extends Model
 
 
     protected $fillable = ['title','content','publishing_date','author_id','category_id'];
-    protected $table = 'aricles';
-    protected $primary_key = 'article_id';
+    protected $table = 'articles';
+    protected $primaryKey = 'article_id';
+    public $timestamps = false;
 
     public function authors(){
 

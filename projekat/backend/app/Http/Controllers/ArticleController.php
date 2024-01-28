@@ -26,12 +26,13 @@ class ArticleController extends Controller
     public function store(Request $request)
     {
 
+        
         $request->validate([
             'title' => 'required|string',
             'content' => 'required|string',
             'publishing_date' => 'required|date',
-            'author_id' => 'exists:authors,id',
-            'category_id' => 'exists:categories,id'
+            'author_id' => 'exists:authors,author_id',
+            'category_id' => 'exists:categories,category_id'
 
         ]);
 
@@ -54,6 +55,7 @@ class ArticleController extends Controller
 
     public function show($id)
     {
+        
 
         $article = Article::where('article_id', $id)->first();
 
@@ -69,13 +71,48 @@ class ArticleController extends Controller
     public function update(Request $request, $id)
     {
 
-        $article = Article::where('articles', $id)->first();
+        $article = Article::where('article_id', $id)->first();
 
         if (!$article) {
 
             return response()->json(['status' => 'Neuspesan', 'poruka' => 'Ne postoji takav clanak u sistemu!'], 404);
         }
 
+        $request->validate([
+            'title' => 'required|string',
+            'content' => 'required|string',
+            'publishing_date' => 'required|date',
+            'author_id' => 'exists:authors,author_id',
+            'category_id' => 'exists:categories,category_id'
+
+        ]);
+
+        $article->update([
+
+            'title' => $request->input('title'),
+            'content' => $request->input('content'),
+            'publishing_date' => $request->input('publishing_date'),
+            'author_id' => $request->input('author_id'),
+            'category_id' => $request->input('category_id')
+
+        ]);
+
+        return response()->json(['status' => 'Uspesan', 'article' => $article], 200);
+    }
+
+    public function destroy($id)
+    {
+
         
+        $article = Article::where('article_id', $id)->first();
+
+        if (!$article) {
+
+            return response()->json(['status' => 'Neuspesan', 'poruka' => 'Ne postoji takav clanak u sistemu!'], 404);
+        }
+
+        $article->delete();
+
+        return response()->json(['status' => 'Uspesan', 'article' => $article], 200);
     }
 }
