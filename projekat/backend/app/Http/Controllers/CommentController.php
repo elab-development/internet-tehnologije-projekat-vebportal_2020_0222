@@ -12,13 +12,16 @@ class CommentController extends Controller
     public function index()
     {
 
+        echo 'Pocetak';
         $comments = Comment::all();
 
         if (!$comments) {
 
+            echo 'Prazno';
             return response()->json(['status' => 'neuspeh', 'poruka' => 'Ne postoje komentari u sistemu!'], 400);
         }
 
+        echo 'Prosao';
         return response()->json(['status' => 'Uspesan', 'komentari' => $comments], 200);
     }
 

@@ -12,7 +12,7 @@ class ArticleController extends Controller
     public function index()
     {
 
-        $articles = Article::all();
+        $articles = Article::paginate(10);
 
         if (!$articles) {
 
@@ -26,7 +26,7 @@ class ArticleController extends Controller
     public function store(Request $request)
     {
 
-        
+
         $request->validate([
             'title' => 'required|string',
             'content' => 'required|string',
@@ -55,7 +55,7 @@ class ArticleController extends Controller
 
     public function show($id)
     {
-        
+
 
         $article = Article::where('article_id', $id)->first();
 
@@ -103,7 +103,7 @@ class ArticleController extends Controller
     public function destroy($id)
     {
 
-        
+
         $article = Article::where('article_id', $id)->first();
 
         if (!$article) {
@@ -114,5 +114,20 @@ class ArticleController extends Controller
         $article->delete();
 
         return response()->json(['status' => 'Uspesan', 'article' => $article], 200);
+    }
+
+    public function getArticleByName(Request $request)
+    {
+
+        $query = Article::query();
+
+        if ($request->has('title')) {
+            $query->where('title', 'like', '%' . $request->title . '%');
+        }
+
+        $articles = $query->paginate(10);
+
+        return response()->json($articles);
+        
     }
 }

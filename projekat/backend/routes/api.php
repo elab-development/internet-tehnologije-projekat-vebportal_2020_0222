@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/vrati',[ArticleController::class,'index']);
+Route::get('/articles/vrati',[ArticleController::class,'getArticleByName']);
 
 //rute vezane za autore
 
@@ -43,19 +44,25 @@ Route::resource('articles', ArticleController::class);
 //autentifikacija korisnika
 
     //registracija
-Route::post('/registruj',[AuthController::class,'register']);
+Route::post('/auth/registruj',[AuthController::class,'register']);
 
     //login
-Route::post('/login',[AuthController::class,'login']);
+Route::post('/auth/login',[AuthController::class,'login']);
 
     //logout
-Route::post('/logout',[AuthController::class,'logout']);
+Route::post('/auth/logout',[AuthController::class,'logout']);
 
 
 //samo autentifikovani korisnici
 
-Route::middleware('auth:sanctum')->group(function () {
+// Route::middleware('auth:sanctum')->group(function () {
 
     
 
-});
+//});
+
+//  Route::middleware(['auth:sanctum', 'admin'])->group(function () {
+    
+
+//     Route::get('/comments',[CommentController::class,'index']);
+//  });

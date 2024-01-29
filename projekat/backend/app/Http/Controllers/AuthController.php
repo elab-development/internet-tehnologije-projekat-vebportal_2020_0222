@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class AuthController extends Controller
 {
@@ -32,6 +34,7 @@ class AuthController extends Controller
             'username' => $data['username'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'isAdmin' => false
             
             
 
@@ -49,7 +52,7 @@ class AuthController extends Controller
 
         $data = $request->validate([
 
-            'email' => 'required|email',
+            'email' => 'required|string',
             'password' => 'required|string'
 
         ]);
@@ -59,7 +62,7 @@ class AuthController extends Controller
         
         if(!$user || !Hash::check($data['password'], $user->password)){
 
-
+            
             return response()->json(['status' => 'Neuspesan', 'poruka' => 'Neuspesno logovanje'],404);
 
 
@@ -88,5 +91,6 @@ class AuthController extends Controller
     }
 
 
+    
 
 }
