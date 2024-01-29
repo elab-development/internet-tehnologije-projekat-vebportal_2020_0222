@@ -31,7 +31,8 @@ class AuthController extends Controller
             'surname' => $data['surname'],
             'username' => $data['username'],
             'email' => $data['email'],
-            'password' => Hash::make($data['password'])
+            'password' => Hash::make($data['password']),
+            'isAdmin' => false
 
 
         ]);

@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -17,11 +19,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+
 
 Route::get('/vrati',[ArticleController::class,'index']);
+
+//rute vezane za autore
+
+Route::get('/authors',[AuthorController::class,'index']);
+Route::get('/authors/{id}',[AuthorController::class,'show']);
+
+//rute vezane za komentare
+
+Route::get('/comments',[CommentController::class,'index']);
+Route::get('comments/{id}',[CommentController::class,'show']);
+Route::post('/comments',[CommentController::class,'store']);
+Route::put('/comments/{id}',[CommentController::class,'update']);
+Route::delete('/comments',[CommentController::class,'destroy']);
 
 //CRUD operacije vezane za clanke
 
@@ -37,3 +50,12 @@ Route::post('/login',[AuthController::class,'login']);
 
     //logout
 Route::post('/logout',[AuthController::class,'logout']);
+
+
+//samo autentifikovani korisnici
+
+Route::middleware('auth:sanctum')->group(function () {
+
+    
+
+});
