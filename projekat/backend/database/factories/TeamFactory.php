@@ -18,6 +18,7 @@ class TeamFactory extends Factory
     public function definition(): array
     {
         return [
+
             'name' => $this->faker->company(),
             'coach' => $this->faker->lastName(),
             'category_id' => Category::inRandomOrder()->first()->category_id

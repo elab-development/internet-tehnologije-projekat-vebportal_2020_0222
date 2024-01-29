@@ -10,7 +10,7 @@ class Team extends Model
     use HasFactory;
 
      protected $fillable = ['name','coach','category_id'];
-     protected $table = ['teams'];
+     protected $table = 'teams';
      protected $primaryKey = 'team_id';
      public $timestamps = false;
 

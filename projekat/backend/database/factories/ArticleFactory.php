@@ -23,8 +23,8 @@ class ArticleFactory extends Factory
             'title' => $this->faker->text(),
             'content' => $this->faker->paragraph(),
             'publishing_date' => $this->faker->date(),
-            'author_id' => Author::inRandomOrder()->first()->author_id(),
-            'category_id' => Category::inRandomOrder()->first()->category_id()
+            'author_id' => Author::inRandomOrder()->first()->author_id,
+            'category_id' => Category::inRandomOrder()->first()->category_id
 
         ];
     }

@@ -19,8 +19,8 @@ class ResultFactory extends Factory
     {
         return [
             
-            'team1_id' => Team::inRandomOrder()->first()->team_id(),
-            'team2_id' => Team::inRandomOrder()->first()->team_id(),
+            'team1_id' => Team::inRandomOrder()->first()->team_id,
+            'team2_id' => Team::inRandomOrder()->first()->team_id,
             'points_team1' => $this->faker->numberBetween(55, 110),
             'points_team2' => $this->faker->numberBetween(55, 110),
 
