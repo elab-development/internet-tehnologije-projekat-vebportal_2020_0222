@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -25,3 +26,14 @@ Route::get('/vrati',[ArticleController::class,'index']);
 //CRUD operacije vezane za clanke
 
 Route::resource('articles', ArticleController::class);
+
+//autentifikacija korisnika
+
+    //registracija
+Route::post('/registruj',[AuthController::class,'register']);
+
+    //login
+Route::post('/login',[AuthController::class,'login']);
+
+    //logout
+Route::post('/logout',[AuthController::class,'logout']);
