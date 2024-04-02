@@ -13,7 +13,7 @@ class ArticleController extends Controller
 
         $articles = Article::all();
 
-        if(!$articles){
+        if($articles){
 
             return response()->json(['status' => 'Neuspeh','poruka'=>'Ne postoje clanci u sistemu!'],404);
         }
