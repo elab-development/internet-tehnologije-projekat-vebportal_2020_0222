@@ -8,19 +8,20 @@ use Illuminate\Http\Request;
 
 class AuthorController extends Controller
 {
-    
-    public function index(){
+
+    public function index()
+    {
 
         $authors = Author::all();
 
-        if(!$authors){
+        if (!$authors) {
 
-            return response()->json(['status' => 'neuspeh', 'poruka' => 'Ne postoje autori u sistemu!'],400);
+            return response()->json(['status' => 'neuspeh', 'poruka' => 'Ne postoje autori u sistemu!'], 400);
         }
 
-        return response()->json(['status' => 'Uspesan','autori'=>$authors],200);
-
+        return response()->json(['status' => 'Uspesan', 'autori' => $authors], 200);
     }
+
 
     public function store(Request $request){
 
@@ -100,5 +101,6 @@ class AuthorController extends Controller
     }
 
     
+
 
 }

@@ -9,15 +9,15 @@ class Author extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name','surname'];
+    protected $fillable = ['name', 'surname'];
     protected $table = 'authors';
     protected $primaryKey = 'author_id';
     public $timestamps = false;
 
-    public function articles(){
+    public function articles()
+    {
 
 
         return $this->hasMany(Article::class);
     }
-    
 }
