@@ -11,7 +11,8 @@ class Team extends Model
 
      protected $fillable = ['name','coach','category_id'];
      protected $table = ['teams'];
-     protected $primary_key = 'team_id';
+     protected $primaryKey = 'team_id';
+     public $timestamps = false;
 
      public function categories(){
 

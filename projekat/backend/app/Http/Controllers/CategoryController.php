@@ -20,4 +20,75 @@ class CategoryController extends Controller
         return response()->json(['status' => 'Uspesan','kategorije'=>$categories],200);
 
     }
+
+    public function store(Request $request){
+
+        $request->validate([
+
+            'name' => 'required|string'
+
+        ]);
+
+        $categories = Category::create([
+
+            'name' => $request->name
+
+        ]);
+
+        return response()->json(['status' => 'Uspesan', 'kategorije' => $categories],200);
+
+    }
+
+    public function show($id){
+
+        $categories = Category::where('category_id',$id)->first();
+
+        if(!$categories){
+            return response()->json(['status' => 'Neuspesan', 'poruka' => 'Ne postoji takva kategorija u sistemu!'],404);
+        }
+
+        return response()->json(['status' => 'Uspesan', 'kategorije' => $categories],200);
+
+
+    }
+
+    public function update(Request $request, $id){
+
+        $categories = Category::where('category_id',$id)->first();
+
+        if(!$categories){
+            return response()->json(['status' => 'Neuspesan', 'poruka' => 'Ne postoji takva kategorija u sistemu!'],404);
+        }
+
+        $request->validate([
+
+            'name' => 'string'
+
+        ]);
+
+        $categories->update([
+
+            'name' => $request['name'] == null? $categories->name : $request->name
+
+        ]);
+
+        return response()->json(['status' => 'Uspesan', 'kategorije' => $categories],200);
+
+    }
+
+    public function destroy($id){
+
+        $categories = Category::where('category_id',$id)->first();
+
+        if(!$categories){
+            return response()->json(['status' => 'Neuspesan', 'poruka' => 'Ne postoji takva kategorija u sistemu!'],404);
+        }
+
+        $categories->delete();
+
+        return response()->json(['status' => 'Uspesan'],200);
+
+    }
+
+
 }

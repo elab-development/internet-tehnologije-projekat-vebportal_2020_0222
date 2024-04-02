@@ -1,7 +1,12 @@
 <?php
 
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,3 +30,7 @@ Route::get('/vrati',[ArticleController::class,'index']);
 //CRUD operacije vezane za clanke
 
 Route::resource('articles', ArticleController::class);
+Route::resource('authors', AuthorController::class);
+Route::resource('categories',CategoryController::class);
+Route::put('izmeniKomentar/{id}',[CommentController::class,'update']);
+Route::post('kreirajKomentar',[CommentController::class,'store']);

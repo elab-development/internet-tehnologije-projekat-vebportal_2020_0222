@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('content');
             $table->unsignedBigInteger('author_id');
             $table->unsignedBigInteger('category_id');
+            $table->date('publishing_date');
 
         });
     }
