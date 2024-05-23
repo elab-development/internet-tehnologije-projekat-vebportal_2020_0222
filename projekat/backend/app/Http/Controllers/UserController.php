@@ -22,7 +22,19 @@ class UserController extends Controller
 
     }
 
-    
 
+    public function getNonAdmins(){
+
+        $nonAdmins = User::where('isAdmin',false)->get();
+
+        if(!$nonAdmins){
+
+            return response()->json(['status' => 'Neuspesan', 'poruka' => 'Ne postoje korisnici koji nisu admini!'],400);
+        }
+
+        return response()->json(['status' => 'Uspesan', 'korisnici' => $nonAdmins],200);
+
+
+    }
 
 }

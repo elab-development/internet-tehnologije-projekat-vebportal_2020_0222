@@ -8,6 +8,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\TeamController;
+use App\Http\Controllers\UserController;
 use App\Models\Author;
 use App\Models\Category;
 use App\Models\Comment;
@@ -73,3 +74,4 @@ Route::get('/paginate/comments',[CommentController::class,'getAllCommentsPaginat
 Route::get('/paginate/authors',[AuthorController::class,'getAllAuthorsPagination']);
 Route::get('/paginate/articles',[ArticleController::class,'getAllArticlePagination']);
 Route::get('/teamByName',[TeamController::class, 'findByName']);
+Route::get('/nonadmins',[UserController::class,'getNonAdmins']);
