@@ -100,7 +100,12 @@ class AuthorController extends Controller
 
     }
 
-    
+    public function getAllAuthorsPagination(){
+
+        $authors = Author::paginate(10);
+
+        return response()->json(['status'=> 'Uspesan', 'komentari' => $authors],200);
+    }
 
 
 }

@@ -22,4 +22,19 @@ class TeamController extends Controller
         return response()->json(['status' => 'Uspesan','timovi'=>$teams],200);
 
     }
+
+
+    public function findByName(Request $request){
+
+        $name = $request->input('name');
+        $teams = Team::where('name','LIKE','%'.$name.'%')->get();
+
+        if(!$teams){
+            
+            return response()->json(['status' => 'Neuspesan','poruka'=>'Ne postoje timovi po zadatom kriterijumu!'],400);
+        }
+
+        return response()->json(['status' => 'Uspesan', 'timovi' => $teams],200);
+
+    }
 }

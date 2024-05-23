@@ -22,7 +22,6 @@ class ArticleController extends Controller
 
     }
 
-    // kreira se jedan clanak
     public function store(Request $request){
 
         $request->validate([
@@ -72,5 +71,13 @@ class ArticleController extends Controller
 
     }
 
+
+    public function getAllArticlePagination(){
+
+        $articles = Article::paginate(10);
+
+        return response()->json(['status' => 'Uspesan', 'clanci' => $articles]);
+
+    }
 
 }

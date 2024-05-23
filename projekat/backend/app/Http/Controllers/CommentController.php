@@ -12,20 +12,17 @@ class CommentController extends Controller
     public function index()
     {
 
-        echo 'Pocetak';
         $comments = Comment::all();
 
         if (!$comments) {
-
-            echo 'Prazno';
             return response()->json(['status' => 'neuspeh', 'poruka' => 'Ne postoje komentari u sistemu!'], 400);
         }
 
-        echo 'Prosao';
+
         return response()->json(['status' => 'Uspesan', 'komentari' => $comments], 200);
     }
 
-   
+
 
 
     //prikazuje se odredjeni clanak
@@ -62,28 +59,33 @@ class CommentController extends Controller
 
         $comments->update(
             [
-                'text' => $request['text'] == null? $comments->text : $request->text,
+                'text' => $request['text'] == null ? $comments->text : $request->text,
 
             ]
-            );
+        );
 
-        return response()->json(['status' => 'Uspesan', 'comment' => $comments],200);
+        return response()->json(['status' => 'Uspesan', 'comment' => $comments], 200);
     }
 
-    public function destroy($id){
+    public function destroy($id)
+    {
 
-        $comments = Comment::where('comment_id',$id)->first();
+        $comments = Comment::where('comment_id', $id)->first();
 
-        if(!$comments){
+        if (!$comments) {
 
-            return response()->json(['status' => 'Neuspesan', 'poruka' => 'Ne postoji takav komentar u sistemu!'],404);
+            return response()->json(['status' => 'Neuspesan', 'poruka' => 'Ne postoji takav komentar u sistemu!'], 404);
         }
 
         $comments->delete();
 
-        return response()->json(['status' => 'Uspesan'],200);
-
+        return response()->json(['status' => 'Uspesan'], 200);
     }
 
-   
+    public function getAllCommentsPagination(){
+
+        $comments = Comment::paginate(10);
+
+        return response()->json(['status'=> 'Uspesan', 'komentari' => $comments],200);
+    }
 }

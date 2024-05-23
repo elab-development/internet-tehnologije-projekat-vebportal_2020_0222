@@ -11,12 +11,13 @@ use Illuminate\Support\Facades\Mail;
 
 class AuthController extends Controller
 {
-    
-    public function register(Request $request){
+
+    public function register(Request $request)
+    {
 
         $data = $request->validate([
 
-            'name'=> 'required|string',
+            'name' => 'required|string',
             'surname' => 'required|string',
             'username' => 'required|string|unique:users,username',
             'email' => 'required|email|unique:users,email',
@@ -25,7 +26,7 @@ class AuthController extends Controller
 
         ]);
 
-       
+
 
         $user = User::create([
 
@@ -35,20 +36,18 @@ class AuthController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'isAdmin' => false
-            
-            
 
 
         ]);
 
         $token = $user->createToken('token')->plainTextToken;
 
-        return response()->json(['status' => 'Uspesan', 'korisnik' => $user],200);
-
+        return response()->json(['status' => 'Uspesan', 'korisnik' => $user], 200);
     }
 
 
-    public function login(Request $request){
+    public function login(Request $request)
+    {
 
         $data = $request->validate([
 
@@ -57,15 +56,13 @@ class AuthController extends Controller
 
         ]);
 
-        $user = User::where('email',$data['email'])->first();
-
-        
-        if(!$user || !Hash::check($data['password'], $user->password)){
-
-            
-            return response()->json(['status' => 'Neuspesan', 'poruka' => 'Neuspesno logovanje'],404);
+        $user = User::where('email', $data['email'])->first();
 
 
+        if (!$user || !Hash::check($data['password'], $user->password)) {
+
+
+            return response()->json(['status' => 'Neuspesan', 'poruka' => 'Neuspesno logovanje'], 404);
         }
 
 
@@ -75,22 +72,15 @@ class AuthController extends Controller
             'korisnik' => $user,
             'token' => $token,
         ], 200);
-
-
-
-
     }
 
     public function logout(Request $request)
     {
+
         $request->user()->tokens()->delete();
 
         return response()->json([
             'poruka' => 'Korisnik izlogovan'
         ], 200);
     }
-
-
-    
-
 }
