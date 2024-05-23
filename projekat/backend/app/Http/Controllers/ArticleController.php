@@ -28,8 +28,8 @@ class ArticleController extends Controller
             'title'=> 'required|string',
             'content'=>'required|string',
             'publishing_date'=>'required|date',
-            'author_id'=>'exists:authors,id',
-            'category_id'=>'exists:categories,id'
+            'author_id'=>'exists:authors,author_id',
+            'category_id'=>'exists:categories,category_id'
 
         ]);
 

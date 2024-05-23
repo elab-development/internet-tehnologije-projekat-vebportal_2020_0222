@@ -53,7 +53,7 @@ Route::post('/auth/login', [AuthController::class, 'login']);
 
 //samo autentifikovani korisnici
 
-Route::middleware('auth:sanctum')->group(function () {
+/* Route::middleware('auth:sanctum')->group(function () {
 
 
     //rute vezane za komentare
@@ -66,7 +66,7 @@ Route::middleware('auth:sanctum')->group(function () {
     
 
     Route::post('/auth/logout', [AuthController::class, 'logout']);
-});
+}); */
 
 //ovde treba da se radi
 
@@ -75,3 +75,17 @@ Route::get('/paginate/authors',[AuthorController::class,'getAllAuthorsPagination
 Route::get('/paginate/articles',[ArticleController::class,'getAllArticlePagination']);
 Route::get('/teamByName',[TeamController::class, 'findByName']);
 Route::get('/nonadmins',[UserController::class,'getNonAdmins']);
+
+
+Route::middleware(['auth:sanctum', 'user'])->group(function () {
+    Route::post('/comments', [CommentController::class, 'store']);
+    Route::post('/auth/logout', [AuthController::class, 'logout']);
+    
+});
+
+// Rute za administratore
+Route::middleware(['auth:sanctum', 'admin'])->group(function () {
+    Route::get('/comments', [CommentController::class, 'index']);
+    Route::post('/auth/logout', [AuthController::class, 'logout']);
+    
+});

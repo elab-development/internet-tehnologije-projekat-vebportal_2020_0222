@@ -22,10 +22,30 @@ class CommentController extends Controller
         return response()->json(['status' => 'Uspesan', 'komentari' => $comments], 200);
     }
 
+    public function store(Request $request){
+
+        $request->validate([
+
+            'text'=>'required|string',
+            'user_id' => 'exists:users,user_id',
+            'article_id' => 'exists:articles,article_id'
+
+        ]);
+
+        $comment = Comment::create([
+
+            'text' => $request->text,
+            'user_id'=> $request->user_id,
+            'article_id'=>$request->article_id
+
+        ]);
 
 
+        return response()->json(['status' => 'Uspesan', 'komentar' => $comment],201);
 
-    //prikazuje se odredjeni clanak
+    }
+
+
 
     public function show($id)
     {
