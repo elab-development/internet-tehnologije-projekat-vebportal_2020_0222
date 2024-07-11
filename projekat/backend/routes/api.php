@@ -27,10 +27,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-
+Route::get('/articles/latest',[ArticleController::class, 'getLatestArticle']);
 Route::get('/vrati', [ArticleController::class, 'index']);
 Route::get('/articles/vrati', [ArticleController::class, 'getArticleByName']);
-
+Route::get('/articles/paginate',[ArticleController::class,'getAllArticlePagination']);
 //rute vezane za autore
 
 //Route::get('/authors', [AuthorController::class, 'index']);
@@ -48,7 +48,7 @@ Route::put('izmeniKomentar/{id}', [CommentController::class, 'update']);
 Route::post('kreirajKomentar', [CommentController::class, 'store']);
 
 //registracija i login
-Route::post('/registruj', [AuthController::class, 'register']);
+Route::post('/auth/register', [AuthController::class, 'register']);
 Route::post('/auth/login', [AuthController::class, 'login']);
 
 //samo autentifikovani korisnici
@@ -72,7 +72,6 @@ Route::post('/auth/login', [AuthController::class, 'login']);
 
 Route::get('/paginate/comments',[CommentController::class,'getAllCommentsPagination']);
 Route::get('/paginate/authors',[AuthorController::class,'getAllAuthorsPagination']);
-Route::get('/paginate/articles',[ArticleController::class,'getAllArticlePagination']);
 Route::get('/teamByName',[TeamController::class, 'findByName']);
 Route::get('/nonadmins',[UserController::class,'getNonAdmins']);
 

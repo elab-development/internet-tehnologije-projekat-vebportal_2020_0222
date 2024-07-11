@@ -8,28 +8,31 @@ use Illuminate\Http\Request;
 
 class ArticleController extends Controller
 {
-    
-    public function index(){
 
-        $articles = Article::all();
+    public function index()
+    {
 
-        if($articles){
+        $articles = Article::with(['authors', 'categories'])->get();
 
-            return response()->json(['status' => 'Neuspeh','poruka'=>'Ne postoje clanci u sistemu!'],404);
+        if (!$articles) {
+
+            return response()->json(['status' => 'Neuspeh', 'poruka' => 'Ne postoje clanci u sistemu!'], 404);
         }
 
-        return response()->json(['status' => 'Uspesan','clanci'=>$articles],200);
 
+
+        return response()->json(['status' => 'Uspesan', 'clanci' => $articles,], 200);
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
 
         $request->validate([
-            'title'=> 'required|string',
-            'content'=>'required|string',
-            'publishing_date'=>'required|date',
-            'author_id'=>'exists:authors,author_id',
-            'category_id'=>'exists:categories,category_id'
+            'title' => 'required|string',
+            'content' => 'required|string',
+            'publishing_date' => 'required|date',
+            'author_id' => 'exists:authors,author_id',
+            'category_id' => 'exists:categories,category_id'
 
         ]);
 
@@ -37,47 +40,57 @@ class ArticleController extends Controller
 
         $article = Article::create([
 
-            'title'=>$request->title,
-            'content'=>$request->content,
-            'publishing_date'=>$request->publishing_date,
-            'author_id'=>$request->author_id,
-            'category_id'=>$request->category_id
+            'title' => $request->title,
+            'content' => $request->content,
+            'publishing_date' => $request->publishing_date,
+            'author_id' => $request->author_id,
+            'category_id' => $request->category_id
         ]);
 
-        return response()->json(['status'=>'Uspesan','clanci'=>$article],201);
+        return response()->json(['status' => 'Uspesan', 'clanci' => $article], 201);
     }
 
 
-//prikazuje se odredjeni clanak
+    //prikazuje se odredjeni clanak
 
-    public function show($id){
+    public function show($id)
+    {
 
-        $article = Article::where('article_id',$id)->first();
+        $article = Article::where('article_id', $id)->first();
 
-        if(!$article){
+        if (!$article) {
 
-            return response()->json(['status' => 'Neuspesan', 'poruka'=> 'Ne postoji takav clanak u sistemu!'],404);
-
+            return response()->json(['status' => 'Neuspesan', 'poruka' => 'Ne postoji takav clanak u sistemu!'], 404);
         }
 
-        return response()->json(['status'=>'Uspesan','article' => $article],200);
-
+        return response()->json(['status' => 'Uspesan', 'article' => $article], 200);
     }
 
 
-    public function update(Request $request, $id){
+    public function update(Request $request, $id)
+    {
 
-        $article = Article::where('articles',$id)->first();
-
+        $article = Article::where('articles', $id)->first();
     }
 
 
-    public function getAllArticlePagination(){
+    public function getAllArticlePagination()
+    {
 
         $articles = Article::paginate(10);
 
         return response()->json(['status' => 'Uspesan', 'clanci' => $articles]);
-
     }
 
+    public function getLatestArticle()
+    {
+
+        $article = Article::with(['authors', 'categories'])->orderBy('publishing_date', 'desc')->first();
+
+        if (!$article) {
+            return response()->json(['status' => 'Neuspeh', 'poruka' => 'Ne postoje clanci u sistemu!'], 404);
+        }
+
+        return  response()->json(['status' => 'Uspesan', 'clanak' => $article]);
+    }
 }
