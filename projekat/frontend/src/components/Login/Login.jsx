@@ -51,7 +51,7 @@ function Login() {
             required
           />
         </div>
-        <button type="submit">Prijavi se</button>
+        <button className="button-login" type="submit">Prijavi se</button>
       </form>
       <p className="register-link">
         Nemate nalog? <Link to="/register">Registrujte se</Link>
