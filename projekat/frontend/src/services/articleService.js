@@ -11,7 +11,6 @@ export async function index() {
 }
 
 export async function store(article) {
-  console.log("Usao 1!: " + JSON.stringify(article));
   const response = await fetch(apiUrl, {
     method: "POST",
     headers: {

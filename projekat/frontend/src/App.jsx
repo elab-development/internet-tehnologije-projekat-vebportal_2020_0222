@@ -9,9 +9,11 @@ import Login from './components/Login/Login'
 import Register from './components/register/Register'
 import AddArticle from './components/article/AddArticle'
 import ArticleDetails from './components/article/ArticleDetails'
+import CommentView from './components/comment/CommentView'
 
 function App() {
   
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   return (
     <>
@@ -19,15 +21,15 @@ function App() {
 
       <div>
 
-        <NavBar></NavBar>
+        <NavBar isLoggedIn = {isLoggedIn}></NavBar>
         <Routes>
 
           <Route path = "/" element = {<HomePage></HomePage>}></Route>
-          <Route path = "/login" element = {<Login></Login>}></Route>
+          <Route path = "/login" element = {<Login setIsLoggedIn = {setIsLoggedIn}></Login>}></Route>
           <Route path='/register' element = {<Register></Register>}></Route>
           <Route path='/addArticle' element={<AddArticle></AddArticle>}></Route>
           <Route path='/articleDetails' element={<ArticleDetails></ArticleDetails>}></Route>
-          
+          <Route path='/articleDetails/commentsView' element={<CommentView></CommentView>}></Route>
         </Routes>
 
         

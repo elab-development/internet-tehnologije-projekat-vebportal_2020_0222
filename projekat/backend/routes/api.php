@@ -46,7 +46,7 @@ Route::resource('authors', AuthorController::class);
 Route::resource('categories', CategoryController::class);
 Route::put('izmeniKomentar/{id}', [CommentController::class, 'update']);
 Route::post('kreirajKomentar', [CommentController::class, 'store']);
-
+Route::get('/comments/byArticleId/{id}', [CommentController::class, 'getAllCommentsByArticleId']);
 //registracija i login
 Route::post('/auth/register', [AuthController::class, 'register']);
 Route::post('/auth/login', [AuthController::class, 'login']);
@@ -70,6 +70,8 @@ Route::post('/auth/login', [AuthController::class, 'login']);
 
 //ovde treba da se radi
 
+Route::patch('/comments/negativeVotes/{id}',[CommentController::class, 'addNegativeVotes']);
+Route::patch('/comments/positiveVotes/{id}',[CommentController::class, 'addPositiveVotes']);
 Route::get('/paginate/comments',[CommentController::class,'getAllCommentsPagination']);
 Route::get('/paginate/authors',[AuthorController::class,'getAllAuthorsPagination']);
 Route::get('/teamByName',[TeamController::class, 'findByName']);

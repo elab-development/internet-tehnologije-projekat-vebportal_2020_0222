@@ -35,12 +35,17 @@
 }
 
 .button-details {
-  color: yellow;
-  background-color: black;
+  color: white;
+  background-color: red;
   font-weight: bold;
   width: 30%;
 }
 
+.button-details:hover{
+
+    background-color:red;
+
+}
 .button-container {
     display: flex;
     justify-content: space-between;

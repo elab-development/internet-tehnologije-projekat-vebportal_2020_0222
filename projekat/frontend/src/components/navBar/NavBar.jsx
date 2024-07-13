@@ -2,7 +2,9 @@ import React from 'react';
 import './NavBar.css';
 import { Link } from 'react-router-dom';
 
-function NavBar() {
+function NavBar({isLoggedIn}) {
+
+
   return (
     <div>
       <nav className="navbar">
@@ -22,9 +24,12 @@ function NavBar() {
           <li className="navbar-item">
             <Link to="/evrokup" className="navbar-link">Evrokup</Link>
           </li>
+          {isLoggedIn === true?<li className="navbar-item">
+            <Link to = "/user" className="navbar-link">Korisnik</Link>
+          </li>:
           <li className="navbar-item">
             <Link to="/login" className="navbar-link">Login</Link> 
-          </li>
+          </li>}
           <li className="navbar-item">
             <Link to="/articleDetails" className="navbar-link">AddArticle</Link> 
           </li>

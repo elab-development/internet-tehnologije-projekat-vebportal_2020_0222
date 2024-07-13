@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { login } from '../../services/authService';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Login.css';
 
-function Login() {
+function Login({setIsLoggedIn}) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const handleLogin = async (event) => {
     try {
@@ -24,6 +25,8 @@ function Login() {
       localStorage.setItem('token', token);
       console.log(JSON.stringify(user) + ' Ful paket: ' + JSON.stringify(response));
       alert('Uspesno logovanje');
+      setIsLoggedIn(true);
+      navigate("/");
     } catch (error) {
       alert(error.message);
     }

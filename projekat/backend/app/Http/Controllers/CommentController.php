@@ -108,4 +108,46 @@ class CommentController extends Controller
 
         return response()->json(['status'=> 'Uspesan', 'komentari' => $comments],200);
     }
+
+    public function getAllCommentsByArticleId($id){
+
+        $comments = Comment::where('article_id', $id)->with('articles','users')->get();
+
+        if(!$comments){
+            return response()->json(['status' => 'Neuspesan', 'poruka' => 'Ne postoji takav komentar u sistemu!'], 404);
+        }
+
+        return response()->json(['status'=> 'Uspesan', 'komentari' => $comments],200);
+    }
+
+    public function addPositiveVotes($id){
+
+        $comment = Comment::where('comment_id',$id)->first();
+
+        if(!$comment){
+
+            return response()->json(['status' => 'Neuspesan', 'poruka' => 'Ne postoji takav komentar u sistemu!'], 404);
+        }
+        $comment->positive_votes += 1;
+
+        $comment->save();
+
+        return response()->json(['status'=> 'Uspesan', 'komentari' => $comment],200);
+    }
+
+    public function addNegativeVotes($id){
+
+        $comment = Comment::where('comment_id',$id)->first();
+
+        if(!$comment){
+
+            return response()->json(['status' => 'Neuspesan', 'poruka' => 'Ne postoji takav komentar u sistemu!'], 404);
+        }
+        $comment->negative_votes += 1;
+
+        $comment->save();
+
+        return response()->json(['status'=> 'Uspesan', 'komentari' => $comment],200);
+    }
+
 }

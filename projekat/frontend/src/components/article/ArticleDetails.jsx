@@ -10,8 +10,14 @@ const ArticleDetails = () => {
   const clickHandler = (e) => {
     e.preventDefault();
     const kategorija = article.categories.category_id;
-    //dodati navigaciju ka
   };
+
+  const commentsHandler = (e) =>{
+
+    e.preventDefault();
+    navigate("commentsView",{state:{article}});
+
+  }
 
   return (
     <div className="article-container">
@@ -26,7 +32,7 @@ const ArticleDetails = () => {
         </span>
       </div>
       <div className="button-container">
-        <button className="button-details">Prikazi komentare</button>
+        <button className="button-details" onClick={commentsHandler}>Prikazi komentare</button>
         <button className="button-details">Komentari</button>
       </div>
 
