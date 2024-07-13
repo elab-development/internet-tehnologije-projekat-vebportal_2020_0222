@@ -19,8 +19,6 @@ class ArticleController extends Controller
             return response()->json(['status' => 'Neuspeh', 'poruka' => 'Ne postoje clanci u sistemu!'], 404);
         }
 
-
-
         return response()->json(['status' => 'Uspesan', 'clanci' => $articles,], 200);
     }
 
@@ -32,19 +30,29 @@ class ArticleController extends Controller
             'content' => 'required|string',
             'publishing_date' => 'required|date',
             'author_id' => 'exists:authors,author_id',
-            'category_id' => 'exists:categories,category_id'
-
+            'category_id' => 'exists:categories,category_id',
+            'image' => 'required|mimes:jpg,jpeg,png|max:2048'
         ]);
 
+        return response()->json(['status' => 'Neuspesan 2'], 200);
+        $image_path = null;
 
+        if ($request->file('image')) {
 
+            $image_name  = time() . '.' . $request->image->getClientOriginalExtension();
+            $request->image->move(public_path('images'), $image_name);
+            $image_path = 'images/' . $image_name;
+        }
+
+        //return response()->json(['status' => 'Neuspesan 3'], 200);
         $article = Article::create([
 
             'title' => $request->title,
             'content' => $request->content,
             'publishing_date' => $request->publishing_date,
             'author_id' => $request->author_id,
-            'category_id' => $request->category_id
+            'category_id' => $request->category_id,
+            'image_path' => $image_path
         ]);
 
         return response()->json(['status' => 'Uspesan', 'clanci' => $article], 201);

@@ -24,8 +24,8 @@ class ArticleFactory extends Factory
             'content' => $this->faker->paragraph(),
             'publishing_date' => $this->faker->date(),
             'author_id' => Author::inRandomOrder()->first()->author_id,
-            'category_id' => Category::inRandomOrder()->first()->category_id
-
+            'category_id' => Category::inRandomOrder()->first()->category_id,
+            'image_path'=> $this->faker->text()
         ];
     }
 }

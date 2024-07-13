@@ -11,6 +11,7 @@ export async function index() {
 }
 
 export async function store(article) {
+  console.log("Usao 1!: " + JSON.stringify(article));
   const response = await fetch(apiUrl, {
     method: "POST",
     headers: {
@@ -18,12 +19,14 @@ export async function store(article) {
     },
     body: JSON.stringify(article),
   });
-
+  console.log("Usao 2!");
   if (!response.ok) {
     throw new Error("Neuspesno cuvanje artikla");
   }
-
+  console.log("Usao 3!");
   const data = await response.json();
+
+  return data;
 }
 
 

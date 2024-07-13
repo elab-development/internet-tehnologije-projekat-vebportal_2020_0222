@@ -7,6 +7,9 @@ function NavBar() {
     <div>
       <nav className="navbar">
         <ul className="navbar-list">
+        <li className="navbar-title">
+            <h1>SPORTSKI PORTAL</h1>
+          </li>
           <li className="navbar-item">
             <Link to="/" className="navbar-link">Početna strana</Link>
           </li>
@@ -21,6 +24,9 @@ function NavBar() {
           </li>
           <li className="navbar-item">
             <Link to="/login" className="navbar-link">Login</Link> 
+          </li>
+          <li className="navbar-item">
+            <Link to="/articleDetails" className="navbar-link">AddArticle</Link> 
           </li>
         </ul>
       </nav>

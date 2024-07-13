@@ -7,6 +7,8 @@ import NavBar from './components/navBar/NavBar'
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Login from './components/Login/Login'
 import Register from './components/register/Register'
+import AddArticle from './components/article/AddArticle'
+import ArticleDetails from './components/article/ArticleDetails'
 
 function App() {
   
@@ -23,6 +25,9 @@ function App() {
           <Route path = "/" element = {<HomePage></HomePage>}></Route>
           <Route path = "/login" element = {<Login></Login>}></Route>
           <Route path='/register' element = {<Register></Register>}></Route>
+          <Route path='/addArticle' element={<AddArticle></AddArticle>}></Route>
+          <Route path='/articleDetails' element={<ArticleDetails></ArticleDetails>}></Route>
+          
         </Routes>
 
         
