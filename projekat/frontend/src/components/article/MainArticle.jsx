@@ -14,7 +14,7 @@ function MainArticle({ article }) {
 
     e.preventDefault();
     console.log('Dugme');
-    //staviti da vraca sve komentare
+    navigate("/commentsView",{state:{article}});
 
   }
 

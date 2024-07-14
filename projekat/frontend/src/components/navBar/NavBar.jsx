@@ -13,16 +13,16 @@ function NavBar({isLoggedIn}) {
             <h1>SPORTSKI PORTAL</h1>
           </li>
           <li className="navbar-item">
-            <Link to="/" className="navbar-link">Početna strana</Link>
+            <Link to="/articles" state={{id:0}}  className="navbar-link">Početna strana</Link>
           </li>
           <li className="navbar-item">
-            <Link to="/nba" className="navbar-link">NBA</Link>
+            <Link to="/articles" state={{id:1}} className="navbar-link">NBA</Link>
           </li>
           <li className="navbar-item">
-            <Link to="/evroliga" className="navbar-link">Evroliga</Link>
+            <Link to="/articles" state={{id:2}} className="navbar-link">Evroliga</Link>
           </li>
           <li className="navbar-item">
-            <Link to="/evrokup" className="navbar-link">Evrokup</Link>
+            <Link to="/articles" state={{id:3}} className="navbar-link">Evrokup</Link>
           </li>
           {isLoggedIn === true?<li className="navbar-item">
             <Link to = "/user" className="navbar-link">Korisnik</Link>
@@ -31,7 +31,7 @@ function NavBar({isLoggedIn}) {
             <Link to="/login" className="navbar-link">Login</Link> 
           </li>}
           <li className="navbar-item">
-            <Link to="/articleDetails" className="navbar-link">AddArticle</Link> 
+            <Link to="/addArticle" className="navbar-link">AddArticle</Link> 
           </li>
         </ul>
       </nav>

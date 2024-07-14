@@ -12,7 +12,7 @@ class ArticleController extends Controller
     public function index()
     {
 
-        $articles = Article::with(['authors', 'categories'])->get();
+        $articles = Article::with(['authors', 'categories'])->orderByDesc('article_id')->get();
 
         if (!$articles) {
 
@@ -34,7 +34,6 @@ class ArticleController extends Controller
             'image' => 'required|mimes:jpg,jpeg,png|max:2048'
         ]);
 
-        return response()->json(['status' => 'Neuspesan 2'], 200);
         $image_path = null;
 
         if ($request->file('image')) {
@@ -58,8 +57,6 @@ class ArticleController extends Controller
         return response()->json(['status' => 'Uspesan', 'clanci' => $article], 201);
     }
 
-
-    //prikazuje se odredjeni clanak
 
     public function show($id)
     {
@@ -100,5 +97,22 @@ class ArticleController extends Controller
         }
 
         return  response()->json(['status' => 'Uspesan', 'clanak' => $article]);
+    }
+
+
+    public function getArticlesByCategory($id)
+    {
+
+        $articles = Article::where('category_id', $id)->with(['authors', 'categories'])->orderByDesc('article_id')->get();
+
+        if (!$articles) {
+            return response()->json(['status' => 'Neuspeh', 'poruka' => 'Ne postoje clanci u sistemu!'], 404);
+        }
+
+        foreach ($articles as $article) {
+            $article->num_comments = $this->getNumComments($article->id);
+        }
+
+        return  response()->json(['status' => 'Uspesan', 'clanci' => $articles]);
     }
 }

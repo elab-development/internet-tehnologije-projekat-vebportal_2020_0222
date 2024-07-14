@@ -1,6 +1,7 @@
 import React from "react";
 import "./ArticleDetails.css";
 import { useLocation, useNavigate } from "react-router-dom";
+import ButtonComment from "../button-comment/ButtonComment";
 
 const ArticleDetails = () => {
   const location = useLocation();
@@ -15,7 +16,7 @@ const ArticleDetails = () => {
   const commentsHandler = (e) =>{
 
     e.preventDefault();
-    navigate("commentsView",{state:{article}});
+    navigate("/commentsView",{state:{article}});
 
   }
 
@@ -33,7 +34,7 @@ const ArticleDetails = () => {
       </div>
       <div className="button-container">
         <button className="button-details" onClick={commentsHandler}>Prikazi komentare</button>
-        <button className="button-details">Komentari</button>
+        <ButtonComment articleId={article.article_id}/>
       </div>
 
       <p className="article-text">{article.content}</p>

@@ -39,8 +39,8 @@ Route::get('/authors', [AuthorController::class, 'index']);
 
 
 //CRUD operacije vezane za clanke
-
-Route::resource('articles', ArticleController::class);
+Route::resource('/articles', ArticleController::class);
+Route::get('/articles/category/{id}', [ArticleController::class, 'getArticlesByCategory']);
 
 Route::resource('authors', AuthorController::class);
 Route::resource('categories', CategoryController::class);
@@ -50,7 +50,8 @@ Route::get('/comments/byArticleId/{id}', [CommentController::class, 'getAllComme
 //registracija i login
 Route::post('/auth/register', [AuthController::class, 'register']);
 Route::post('/auth/login', [AuthController::class, 'login']);
-
+Route::put('/comments/{id}', [CommentController::class, 'update']);
+Route::post('/comments', [CommentController::class, 'store']);
 //samo autentifikovani korisnici
 
 /* Route::middleware('auth:sanctum')->group(function () {
@@ -79,7 +80,7 @@ Route::get('/nonadmins',[UserController::class,'getNonAdmins']);
 
 
 Route::middleware(['auth:sanctum', 'user'])->group(function () {
-    Route::post('/comments', [CommentController::class, 'store']);
+    //Route::post('/comments', [CommentController::class, 'store']);
     Route::post('/auth/logout', [AuthController::class, 'logout']);
     
 });

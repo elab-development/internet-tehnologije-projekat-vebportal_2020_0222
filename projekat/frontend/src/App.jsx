@@ -10,6 +10,9 @@ import Register from './components/register/Register'
 import AddArticle from './components/article/AddArticle'
 import ArticleDetails from './components/article/ArticleDetails'
 import CommentView from './components/comment/CommentView'
+import AddComment from './components/comment/AddComment'
+import ButtonComment from './components/button-comment/ButtonComment'
+import Articles from './components/article/Articles'
 
 function App() {
   
@@ -29,7 +32,9 @@ function App() {
           <Route path='/register' element = {<Register></Register>}></Route>
           <Route path='/addArticle' element={<AddArticle></AddArticle>}></Route>
           <Route path='/articleDetails' element={<ArticleDetails></ArticleDetails>}></Route>
-          <Route path='/articleDetails/commentsView' element={<CommentView></CommentView>}></Route>
+          <Route path='/commentsView' element={<CommentView></CommentView>}></Route>
+          <Route path='/addComment' element={<AddComment></AddComment>}></Route>
+          <Route path='/articles' element={<Articles/>}></Route>
         </Routes>
 
         

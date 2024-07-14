@@ -40,3 +40,20 @@ export async function addPositiveVotes(id) {
   
     return data;
   }
+
+  export async function store(comment) {
+    const response = await fetch(apiUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(comment),
+    });
+    if (!response.ok) {
+      throw new Error("Neuspesno cuvanje komentara");
+    }
+    const data = await response.json();
+  
+    return data;
+  }
+

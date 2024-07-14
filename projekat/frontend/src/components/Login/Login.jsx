@@ -23,6 +23,7 @@ function Login({setIsLoggedIn}) {
       const user = response.korisnik;
       const token = response.token;
       localStorage.setItem('token', token);
+      localStorage.setItem('user',JSON.stringify(user));
       console.log(JSON.stringify(user) + ' Ful paket: ' + JSON.stringify(response));
       alert('Uspesno logovanje');
       setIsLoggedIn(true);

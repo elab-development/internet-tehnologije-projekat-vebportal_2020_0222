@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import { getCommentsByArticleId } from "../../services/commentService";
 import Comments from "./Comments";
 import './CommentView.css';
+import ButtonComment from "../button-comment/ButtonComment";
 
 function CommentView() {
   const location = useLocation();
@@ -19,6 +20,12 @@ function CommentView() {
     fetchData();
   }, [article]);
 
+  const buttonHandler = async (e) =>{
+
+
+
+  }
+
   return (
     <div className="comment-view-container">
       {comments.length === 0 ? (
@@ -26,7 +33,7 @@ function CommentView() {
       ) : (
         <div>
           <h2 className="comments-article-title">{article.title}</h2>
-          <button className="button-details">Komentariši</button>
+          <ButtonComment articleId={article.article_id}></ButtonComment>
           <div className="comments-list">
             <h4>Hronoloski</h4>
             <h4>Pozitivni</h4>

@@ -13,10 +13,7 @@ export async function index() {
 export async function store(article) {
   const response = await fetch(apiUrl, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(article),
+    body: article,
   });
   console.log("Usao 2!");
   if (!response.ok) {
@@ -84,4 +81,18 @@ export async function show(id) {
     
       return data;
 
+  }
+
+  export async function getArticlesByCategory(id) {
+    const response = await fetch(apiUrl + '/category/' + id, {
+      method: "GET",
+    });
+  
+    if (!response.ok) {
+        throw new Error(response.status);
+      }
+
+    const data = await response.json();
+  
+    return data;
   }
