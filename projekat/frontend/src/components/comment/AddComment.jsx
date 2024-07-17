@@ -29,10 +29,10 @@ function AddComment() {
   };
 
   return (
-    <div className="comment-form-container">
+    <div>
       <h3>Pošalji komentar</h3>
       <form>
-        <div className="form-group">
+        <div>
           <label htmlFor="comment">Vaš komentar</label>
           <textarea
             id="comment"
@@ -42,7 +42,6 @@ function AddComment() {
           />
         </div>
         <button
-          className="button-comment"
           type="submit"
           onClick={submitHandler}
         >

@@ -20,17 +20,17 @@ function Article({ article }) {
   };
 
   return (
-    <div className="col-md-4 mb-3">
-      <article className="card">
-        <div className="message-button-article" onClick={commentsHandler}>
-          <span className="comment-count">{article.number_of_comments}</span>
-          <i className="fas fa-comment-alt" content="4"></i>
+    <div>
+      <article>
+        <div  onClick={commentsHandler}>
+          <span >{article.number_of_comments}</span>
+          <i  content="4"></i>
         </div>
-        <div className="card-images">
+        <div >
           <img src={article.image_url} alt="Article" />
         </div>
-        <div className="card-body">
-          <h1 className="card-title" onClick={clickHandler}>
+        <div>
+          <h1 onClick={clickHandler}>
             {article.title}
           </h1>
         </div>

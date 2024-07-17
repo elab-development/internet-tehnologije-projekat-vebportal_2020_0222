@@ -58,24 +58,22 @@ function AddArticle() {
   };
 
   return (
-    <div className="container mt-5">
+    <div>
       <h2>Add Article</h2>
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
+        <div>
           <label htmlFor="title">Title</label>
           <input
             type="text"
-            className="form-control"
             id="title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             required
           />
         </div>
-        <div className="form-group">
+        <div>
           <label htmlFor="content">Content</label>
           <textarea
-            className="form-control-text-area"
             id="content"
             rows="5"
             value={content}
@@ -83,50 +81,46 @@ function AddArticle() {
             required
           ></textarea>
         </div>
-        <div className="form-group">
+        <div>
           <label htmlFor="publishingDate">Publishing Date</label>
           <input
             type="date"
-            className="form-control"
             id="publishingDate"
             value={publishingDate}
             onChange={(e) => setPublishingDate(e.target.value)}
             required
           />
         </div>
-        <div className="form-group">
+        <div>
           <label htmlFor="authorId">Author</label>
           <input
             type="text"
-            className="form-control"
             id="authorId"
             value={authorId}
             onChange={(e) => setAuthorId(e.target.value)}
             required
           />
         </div>
-        <div className="form-group">
+        <div>
           <label htmlFor="categoryId">Category</label>
           <input
             type="text"
-            className="form-control"
             id="categoryId"
             value={categoryId}
             onChange={(e) => setCategoryId(e.target.value)}
             required
           />
         </div>
-        <div className="form-group">
+        <div>
           <label htmlFor="image">Image</label>
           <input
             type="file"
-            className="form-control"
             id="image"
             onChange={handleImageChange}
             required
           />
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit">
           Submit
         </button>
       </form>

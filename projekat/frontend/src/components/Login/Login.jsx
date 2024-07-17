@@ -34,10 +34,10 @@ function Login({setIsLoggedIn}) {
   }
 
   return (
-    <div className="login-container">
+    <div>
       <h2>Prijava</h2>
       <form onSubmit={handleLogin}>
-        <div className="form-group">
+        <div>
           <label>Email:</label>
           <input
             type="email"
@@ -46,7 +46,7 @@ function Login({setIsLoggedIn}) {
             required
           />
         </div>
-        <div className="form-group">
+        <div>
           <label>Lozinka:</label>
           <input
             type="password"
@@ -55,9 +55,9 @@ function Login({setIsLoggedIn}) {
             required
           />
         </div>
-        <button className="button-login" type="submit">Prijavi se</button>
+        <button type="submit">Prijavi se</button>
       </form>
-      <p className="register-link">
+      <p >
         Nemate nalog? <Link to="/register">Registrujte se</Link>
       </p>
     </div>

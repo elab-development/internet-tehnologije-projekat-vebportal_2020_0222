@@ -37,10 +37,10 @@ function Register() {
     }
 
   return (
-    <div className="register-container">
+    <div>
       <h2>Registracija</h2>
       <form onSubmit={handleRegister}>
-        <div className="form-group">
+        <div>
           <label>Ime:</label>
           <input
             type="text"
@@ -49,7 +49,7 @@ function Register() {
             required
           />
         </div>
-        <div className="form-group">
+        <div>
           <label>Prezime:</label>
           <input
             type="text"
@@ -58,7 +58,7 @@ function Register() {
             required
           />
         </div>
-        <div className="form-group">
+        <div>
           <label>Korisničko ime:</label>
           <input
             type="text"
@@ -67,7 +67,7 @@ function Register() {
             required
           />
         </div>
-        <div className="form-group">
+        <div >
           <label>Email:</label>
           <input
             type="email"
@@ -76,7 +76,7 @@ function Register() {
             required
           />
         </div>
-        <div className="form-group">
+        <div>
           <label>Lozinka:</label>
           <input
             type="password"

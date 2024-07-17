@@ -14,7 +14,7 @@ function ButtonComment({articleId}) {
   }
 
   return (
-    <button className = "button-details" onClick={buttonHandler}>Komentariši</button>
+    <button onClick={buttonHandler}>Komentariši</button>
   )
 }
 

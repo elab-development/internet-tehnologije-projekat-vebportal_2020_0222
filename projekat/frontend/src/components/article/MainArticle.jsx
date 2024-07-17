@@ -19,22 +19,22 @@ function MainArticle({ article }) {
   };
 
   return (
-    <div className="col-md-4 mb-3">
-      <article className="card-main">
-        <div className="message-button" onClick={commentsHandler}>
-          <span className="comment-count">{article.number_of_comments}</span>
-          <i className="fas fa-comment-alt" content="4"></i>
+    <div>
+      <article >
+        <div onClick={commentsHandler}>
+          <span >{article.number_of_comments}</span>
+          <i content="4"></i>
         </div>
-        <div className="card-body-main">
-          <div className="card-content-main">
-            <h3 className="card-content-author">
+        <div >
+          <div>
+            <h3>
               {article.authors.name} {article.authors.surname}
             </h3>
-            <h1 className="card-title-main" onClick={clickHandler}>
+            <h1 onClick={clickHandler}>
               {article.title}
             </h1>
           </div>
-          <div className="card-images">
+          <div>
             <img src={article.image_url}></img>
           </div>
         </div>

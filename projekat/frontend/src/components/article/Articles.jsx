@@ -32,21 +32,21 @@ function Articles() {
   }, [id]);
 
   return (
-    <div className="homepage">
+    <div>
       <div>
         {articles && articles.length > 0 ? (
           <>
             <div>
               <MainArticle article={articles[0]} />
             </div>
-            <div className="articles">
+            <div>
               {articles.slice(1).map((article, index) => (
                 <Article key={index} article={article} />
               ))}
             </div>
           </>
         ) : (
-          <p className="text-center w-100">Nema članaka u sistemu!</p>
+          <p>Nema članaka u sistemu!</p>
         )}
       </div>
     </div>

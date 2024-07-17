@@ -49,18 +49,18 @@ function CommentView() {
   }
 
   return (
-    <div className="comment-view-container">
+    <div>
       {comments.length === 0 ? (
         <h1>Učitavanje...</h1>
       ) : (
         <div>
-          <h2 className="comments-article-title">{article.title}</h2>
+          <h2>{article.title}</h2>
           <ButtonComment articleId={article.article_id}></ButtonComment>
-          <div className="comments-list">
+          <div>
             <h4 onClick={positiveHandler}>Pozitivni</h4>
             <h4 onClick={negativeHandler}>Negativni</h4>
           </div>
-          <div className="comments">
+          <div>
             {comments.map((comment, index) => (
               <Comments key={index} index={index} comment={comment} />
             ))}

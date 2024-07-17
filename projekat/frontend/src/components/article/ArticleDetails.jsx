@@ -26,24 +26,24 @@ const ArticleDetails = () => {
   }
 
   return (
-    <div className="article-container">
-      <h1 className="article-title">{article.title}</h1>
-      <div className="article-meta">
+    <div>
+      <h1>{article.title}</h1>
+      <div>
         <span>
           Autor: {article.authors.name} {article.authors.surname}
         </span>
         <span>Datum: {article.publishing_date}</span>
-        <span className="span" onClick={clickHandler}>
+        <span onClick={clickHandler}>
           Kategorija: {article.categories.name}
         </span>
       </div>
-      <div className="button-container">
-        <button className="button-details" onClick={commentsHandler}>Prikazi komentare</button>
+      <div>
+        <button onClick={commentsHandler}>Prikazi komentare</button>
         <ButtonComment articleId={article.article_id}/>
       </div>
 
       <img src={article.image_url}></img>
-      <p className="article-text">{article.content}</p>
+      <p>{article.content}</p>
     </div>
   );
 };
