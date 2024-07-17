@@ -12,8 +12,9 @@ function Comments({ comment }) {
 
     e.preventDefault();
     try {
-        await addPositiveVotes(comment.comment_id);
-        setPositive(prev=>prev+1);
+        const comment2 = await addPositiveVotes(comment.comment_id);
+        console.log(JSON.stringify(comment2.komentari));
+        setPositive(comment2.komentari.positive_votes);
     } catch (error) {
         alert(error.message);
     }

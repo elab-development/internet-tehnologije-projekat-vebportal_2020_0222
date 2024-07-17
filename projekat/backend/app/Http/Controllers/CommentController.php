@@ -150,4 +150,30 @@ class CommentController extends Controller
         return response()->json(['status'=> 'Uspesan', 'komentari' => $comment],200);
     }
 
+    public function getCommentsWithMostPositiveVotes($id){
+
+        $comments = Comment::where('article_id',$id)->with('users','articles')->orderByDesc('positive_votes')->get();
+
+        if(!$comments){
+
+            return response()->json(['status' => 'Neuspesan', 'poruka' => 'Ne postoji takav komentar u sistemu!'], 404);
+        }
+
+        return response()->json(['status'=> 'Uspesan', 'komentari' => $comments],200);
+
+    }
+
+    public function getCommentsWithMostNegativeVotes($id){
+
+        $comments = Comment::where('article_id',$id)->with('users','articles')->orderByDesc('negative_votes')->get();
+
+        if(!$comments){
+
+            return response()->json(['status' => 'Neuspesan', 'poruka' => 'Ne postoji takav komentar u sistemu!'], 404);
+        }
+
+        return response()->json(['status'=> 'Uspesan', 'komentari' => $comments],200);
+
+    }
+
 }

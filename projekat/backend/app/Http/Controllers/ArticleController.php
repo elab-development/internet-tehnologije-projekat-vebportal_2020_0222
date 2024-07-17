@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Article;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
@@ -17,6 +18,12 @@ class ArticleController extends Controller
         if (!$articles) {
 
             return response()->json(['status' => 'Neuspeh', 'poruka' => 'Ne postoje clanci u sistemu!'], 404);
+        }
+
+        foreach ($articles as $article) {
+            $article->image_url = url($article->image_path); 
+            $comments = Comment::where('article_id',$article['article_id'])->get()->count();
+            $article->number_of_comments = $comments;
         }
 
         return response()->json(['status' => 'Uspesan', 'clanci' => $articles,], 200);
@@ -43,7 +50,6 @@ class ArticleController extends Controller
             $image_path = 'images/' . $image_name;
         }
 
-        //return response()->json(['status' => 'Neuspesan 3'], 200);
         $article = Article::create([
 
             'title' => $request->title,
@@ -108,9 +114,10 @@ class ArticleController extends Controller
         if (!$articles) {
             return response()->json(['status' => 'Neuspeh', 'poruka' => 'Ne postoje clanci u sistemu!'], 404);
         }
-
         foreach ($articles as $article) {
-            $article->num_comments = $this->getNumComments($article->id);
+            $article->image_url = url($article->image_path); 
+            $comments = Comment::where('article_id',$article['article_id'])->get()->count();
+            $article->number_of_comments = $comments;
         }
 
         return  response()->json(['status' => 'Uspesan', 'clanci' => $articles]);

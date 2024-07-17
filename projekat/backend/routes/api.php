@@ -47,6 +47,10 @@ Route::resource('categories', CategoryController::class);
 Route::put('izmeniKomentar/{id}', [CommentController::class, 'update']);
 Route::post('kreirajKomentar', [CommentController::class, 'store']);
 Route::get('/comments/byArticleId/{id}', [CommentController::class, 'getAllCommentsByArticleId']);
+Route::get('/comments/mostPositive/{id}', [CommentController::class, 'getCommentsWithMostPositiveVotes']);
+Route::get('/comments/mostNegative/{id}', [CommentController::class, 'getCommentsWithMostNegativeVotes']);
+
+
 //registracija i login
 Route::post('/auth/register', [AuthController::class, 'register']);
 Route::post('/auth/login', [AuthController::class, 'login']);

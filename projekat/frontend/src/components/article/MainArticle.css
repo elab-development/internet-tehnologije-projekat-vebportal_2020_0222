@@ -8,23 +8,18 @@
     transition: transform 0.2s;
     height: 420px;
     width: 100%;
-    padding: 20px;
     background-color: black;
     position: relative;
     grid-column: span 3;
 }
 
-
-
-.card-main:hover{
+.card-main:hover {
     transform: translateY(-5px);
 }
 
-
-.card-images {
+.card-body-main {
     display: flex;
-    width: 50%;
-    justify-content: space-around;
+    width: 100%;
 }
 
 .card-content-main {
@@ -32,8 +27,22 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: flex-end;
-    padding-bottom: 100px;
+    align-items: flex-start;
+    padding-right: 20px;
+}
+
+.card-images {
+    width: 50%;
+    height: 412px;
+    position: relative;
+}
+
+.card-images img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0.25rem;
+    border: 4px solid #ccc;
 }
 
 .card-title-main {
@@ -46,11 +55,11 @@
     position: absolute;
     top: 70px;
     left: 10px;
-    max-width: calc(50% - 40px); 
-    white-space: normal; 
-    overflow: hidden; 
-    text-overflow: ellipsis; 
-    height: auto; 
+    max-width: calc(50% - 40px);
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: auto;
     text-align: left;
     cursor: pointer;
 }
@@ -68,7 +77,7 @@
 .message-button {
     position: absolute;
     top: 10px;
-    left: 1150px;
+    right: 10px;
     background-color: transparent;
     border: none;
     color: gold;
@@ -76,13 +85,11 @@
     font-size: 1.5rem;
     margin: 0;
     padding: 0;
-    display: flex; 
-    align-items: center; 
-  }
-  
-.comment-count{
+    display: flex;
+    align-items: center;
+    z-index: 1;
+}
 
+.comment-count {
     padding-right: 10px;
-
-
 }

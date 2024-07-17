@@ -1,38 +1,38 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Article.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import { useNavigate } from "react-router-dom";
-import { getCommentsByArticleId } from "../../services/commentService";
 
-function Article({ article, index }) {
-
+function Article({ article }) {
   const navigate = useNavigate();
 
-  const clickHandler = (e)=>{
-
+  const clickHandler = (e) => {
     e.preventDefault();
-    console.log("Komentari moji grobari!");
     navigate("/articleDetails", { state: { article } });
-    
+  };
 
-  }
-
-  const commentsHandler = async (e) =>{
-
+  const commentsHandler = async (e) => {
     e.preventDefault();
-    navigate("/commentsView",{state:{article}});
-  }
-
+    if(article.number_of_comments === 0){
+      return 0;
+    }
+    navigate("/commentsView", { state: { article } });
+  };
 
   return (
     <div className="col-md-4 mb-3">
       <article className="card">
-      <div className="message-button-article"  onClick={commentsHandler}   >
-        <span className="comment-count">4</span>
+        <div className="message-button-article" onClick={commentsHandler}>
+          <span className="comment-count">{article.number_of_comments}</span>
           <i className="fas fa-comment-alt" content="4"></i>
         </div>
+        <div className="card-images">
+          <img src={article.image_url} alt="Article" />
+        </div>
         <div className="card-body">
-          <h1 className="card-title" onClick={clickHandler}>{article.title}</h1>
+          <h1 className="card-title" onClick={clickHandler}>
+            {article.title}
+          </h1>
         </div>
       </article>
     </div>

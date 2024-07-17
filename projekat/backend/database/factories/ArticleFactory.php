@@ -18,14 +18,24 @@ class ArticleFactory extends Factory
      */
     public function definition(): array
     {
+        $categoryImageMap = [
+            1 => 'images/nba.png',
+            2 => 'images/1720918075.png',
+            3 => 'images/1720937563.png'
+        ];
+
+        $author = Author::inRandomOrder()->first();
+        $category = Category::inRandomOrder()->first();
+
+        $imagePath = $categoryImageMap[$category->category_id] ?? 'images/default.jpg';
+
         return [
-            
-            'title' => $this->faker->text(),
-            'content' => $this->faker->paragraph(),
+            'title' => $this->faker->sentence($nbWords = 6, $variableNbWords = true), 
+            'content' => $this->faker->realText($maxNbChars = 200, $indexSize = 2), 
             'publishing_date' => $this->faker->date(),
-            'author_id' => Author::inRandomOrder()->first()->author_id,
-            'category_id' => Category::inRandomOrder()->first()->category_id,
-            'image_path'=> $this->faker->text()
+            'author_id' => $author->author_id,
+            'category_id' => $category->category_id,
+            'image_path' => $imagePath,
         ];
     }
 }

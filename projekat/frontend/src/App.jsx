@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -13,10 +13,26 @@ import CommentView from './components/comment/CommentView'
 import AddComment from './components/comment/AddComment'
 import ButtonComment from './components/button-comment/ButtonComment'
 import Articles from './components/article/Articles'
+import User from './components/user/User'
 
 function App() {
   
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [loggedInUser, setLoggedInUser] = useState(null);
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user) {
+      setIsLoggedIn(true);
+      setLoggedInUser(user);
+      if(user.isAdmin){
+        setIsAdmin(true);
+      }
+    }
+
+    console.log('isLoggedIn: ' + isLoggedIn + " loggedInUser: " + loggedInUser + " isAdmin: " + isAdmin);
+  }, [isLoggedIn]);
 
   return (
     <>
@@ -24,17 +40,21 @@ function App() {
 
       <div>
 
-        <NavBar isLoggedIn = {isLoggedIn}></NavBar>
+        <NavBar isLoggedIn = {isLoggedIn} isAdmin={isAdmin}></NavBar>
         <Routes>
 
           <Route path = "/" element = {<HomePage></HomePage>}></Route>
           <Route path = "/login" element = {<Login setIsLoggedIn = {setIsLoggedIn}></Login>}></Route>
           <Route path='/register' element = {<Register></Register>}></Route>
-          <Route path='/addArticle' element={<AddArticle></AddArticle>}></Route>
+          <Route 
+              path='/addArticle' 
+              element={isAdmin ? <AddArticle /> : <Navigate to="/" />} 
+            />
           <Route path='/articleDetails' element={<ArticleDetails></ArticleDetails>}></Route>
           <Route path='/commentsView' element={<CommentView></CommentView>}></Route>
           <Route path='/addComment' element={<AddComment></AddComment>}></Route>
           <Route path='/articles' element={<Articles/>}></Route>
+          <Route path='/user' element = {<User user={loggedInUser} setIsLoggedIn={setIsLoggedIn} setLoggedInUser={setLoggedInUser}></User>}></Route>
         </Routes>
 
         

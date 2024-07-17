@@ -57,3 +57,30 @@ export async function addPositiveVotes(id) {
     return data;
   }
 
+  export async function getCommentsWithMostPositiveVotes(articleId){
+
+    const response = await fetch(apiUrl+"/"+ "mostPositive/"+ articleId);
+
+    if(!response.ok){
+
+        throw new Error("Nije uspelo dohvatanje komentara");        
+    }
+
+    const data = response.json();
+
+    return data;
+}
+
+export async function getCommentsWithMostNegativeVotes(articleId){
+
+    const response = await fetch(apiUrl+"/"+ "mostNegative/"+ articleId);
+
+    if(!response.ok){
+
+        throw new Error("Nije uspelo dohvatanje komentara");        
+    }
+
+    const data = response.json();
+
+    return data;
+}

@@ -1,5 +1,6 @@
 .card {
   display: flex;
+  flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
   border: 1px solid #dee2e6;
@@ -24,24 +25,38 @@
   cursor: pointer;
 }
 
+.card-images {
+  width: 100%; 
+  height: 50%;
+  overflow: hidden;
+}
+
+.card-images img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+  border-radius: 0.25rem;
+  border: 4px solid #ccc; 
+}
+
 .message-button-article {
-    position: absolute;
-    top: 10px;
-    left: 320px;
-    background-color: transparent;
-    border: none;
-    color: gold;
-    cursor: pointer;
-    font-size: 1.5rem;
-    margin: 0;
-    padding: 0;
-    display: flex; 
-    align-items: center; 
+  position: absolute;
+  top: 10px;
+  right: 10px; 
+  background-color: transparent;
+  border: none;
+  color: gold;
+  cursor: pointer;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
 }
 
-.comment-count{
-
+.comment-count {
   padding-right: 10px;
-
-
 }
+
+.comment-count.disabled {
+  opacity: 0.5;
+}
+
