@@ -1,16 +1,22 @@
 import React from 'react';
 import './User.css';
 import { useNavigate } from 'react-router-dom';
+import { logout } from '../../services/authService';
 
 function User({user,setIsLoggedIn, setLoggedInUser}) {
 
     const navigate = useNavigate();
 
-    const handleLogout = () => {
-        setLoggedInUser(null);
-        setIsLoggedIn(false);
-        localStorage.removeItem("user");
-        navigate("/");
+    const handleLogout = async () => {
+        try {
+          await logout();
+          setLoggedInUser(null);
+          setIsLoggedIn(false);
+          navigate("/");
+        } catch (error) {
+          alert(error.message);
+        }
+        
       };
 
   return (

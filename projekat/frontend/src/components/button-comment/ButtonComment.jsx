@@ -1,21 +1,23 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
-function ButtonComment({articleId}) {
-
+function ButtonComment({ articleId }) {
   const navigate = useNavigate();
 
-  const buttonHandler = (e) =>{
-
+  const buttonHandler = (e) => {
     e.preventDefault();
 
-    navigate("/addComment", {state:{articleId}});
+    const user = JSON.parse(localStorage.getItem("user"));
 
-  }
+    if (user) {
+      navigate("/addComment", { state: { articleId } });
+      return;
+    }
 
-  return (
-    <button onClick={buttonHandler}>Komentariši</button>
-  )
+    navigate("/login");
+  };
+
+  return <button onClick={buttonHandler}>Komentariši</button>;
 }
 
-export default ButtonComment
+export default ButtonComment;

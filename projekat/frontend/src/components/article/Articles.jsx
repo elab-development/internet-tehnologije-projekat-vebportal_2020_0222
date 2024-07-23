@@ -13,7 +13,6 @@ function Articles() {
   useEffect(() => {
     async function fetchData() {
       if (id === 0) {
-        console.log("Usao prvo");
         const artikli = await index();
         console.log("Artikli: " + artikli.clanci);
         setArticles(artikli.clanci);

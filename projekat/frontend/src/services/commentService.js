@@ -1,3 +1,5 @@
+import fetchWithAuth from "./authService";
+
 const apiUrl = "http://localhost:8000/api/comments";
 
 export async function getCommentsByArticleId(articleId){
@@ -15,9 +17,11 @@ export async function getCommentsByArticleId(articleId){
 }
 
 export async function addPositiveVotes(id) {
-    const response = await fetch(apiUrl + "/positiveVotes/" + id, {
+
+    const response = await fetchWithAuth(apiUrl+"/positiveVotes/"+id, {
       method: "PATCH",
     });
+    
     if (!response.ok) {
       throw new Error("Neuspesno dodavanje plusa");
     }
@@ -83,4 +87,19 @@ export async function getCommentsWithMostNegativeVotes(articleId){
     const data = response.json();
 
     return data;
+}
+
+export async function getCommentsByUserId(userId){
+
+  const response = await fetchWithAuth(apiUrl + "/byUserId/" + userId);
+
+  if(!response.ok){
+
+    throw new Error(response.json().poruka);
+  }
+
+  const data = await response.json();
+
+  return data;
+
 }

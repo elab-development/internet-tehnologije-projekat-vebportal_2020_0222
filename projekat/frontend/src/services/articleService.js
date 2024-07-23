@@ -96,3 +96,27 @@ export async function show(id) {
   
     return data;
   }
+
+  export async function searchArticles(search){
+
+    const response = await fetch(apiUrl+"/search",{
+      method:"GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(search)
+    });
+
+    if(!response.ok){
+      const odgovor = response.json();
+      throw new Error(odgovor.poruka);
+
+    }
+
+
+    const data = response.json();
+
+    return data;
+
+
+  }

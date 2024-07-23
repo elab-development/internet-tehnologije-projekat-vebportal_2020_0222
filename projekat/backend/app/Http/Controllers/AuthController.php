@@ -49,6 +49,10 @@ class AuthController extends Controller
     public function login(Request $request)
     {
 
+        if($request->is_banned){
+            return response()->json(['status' => 'Neuspesan', 'poruka' => 'Korisnik je banovan'], 404);
+        }
+
         $data = $request->validate([
 
             'email' => 'required|string',

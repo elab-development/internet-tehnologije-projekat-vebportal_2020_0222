@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { getCommentsByArticleId, getCommentsWithMostNegativeVotes, getCommentsWithMostPositiveVotes } from "../../services/commentService";
-import Comments from "./Comments";
 import './CommentView.css';
 import ButtonComment from "../button-comment/ButtonComment";
+import CommentComp from "./CommentComp";
 
 function CommentView() {
   const location = useLocation();
   const { article } = location.state || {};
   const [comments, setComments] = useState([]);
-
+  
   useEffect(() => {
     async function fetchData() {
       const comms = await getCommentsByArticleId(article.article_id);
@@ -29,7 +29,7 @@ function CommentView() {
         setComments(positive.komentari);
 
     } catch (error) {
-        alert(error.message);
+        console.log(error.message);
     }
 
   }
@@ -62,7 +62,7 @@ function CommentView() {
           </div>
           <div>
             {comments.map((comment, index) => (
-              <Comments key={index} index={index} comment={comment} />
+              <CommentComp key={index} index={index} comment={comment} />
             ))}
           </div>
         </div>

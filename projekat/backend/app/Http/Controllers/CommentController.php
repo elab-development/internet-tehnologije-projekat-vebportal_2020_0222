@@ -176,4 +176,18 @@ class CommentController extends Controller
 
     }
 
+    public function getCommentsByUserId($id){
+
+        $comments = Comment::where('user_id',$id)->with('users','articles')->get();
+
+        if(!$comments){
+
+            return response()->json(['status' => 'Neuspesan', 'poruka' => 'Ne postoje takvi komentari u sistemu!'], 404);
+
+        }
+
+        return response()->json(['status'=> 'Uspesan', 'komentari' => $comments],200);
+
+    }
+
 }

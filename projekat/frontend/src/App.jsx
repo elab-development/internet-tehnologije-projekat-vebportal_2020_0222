@@ -14,6 +14,7 @@ import AddComment from './components/comment/AddComment'
 import ButtonComment from './components/button-comment/ButtonComment'
 import Articles from './components/article/Articles'
 import User from './components/user/User'
+import ShowUser from './components/user/ShowUser'
 
 function App() {
   
@@ -55,6 +56,7 @@ function App() {
           <Route path='/addComment' element={<AddComment></AddComment>}></Route>
           <Route path='/articles' element={<Articles/>}></Route>
           <Route path='/user' element = {<User user={loggedInUser} setIsLoggedIn={setIsLoggedIn} setLoggedInUser={setLoggedInUser}></User>}></Route>
+          <Route path="/showUser" element = {<ShowUser></ShowUser>}></Route>
         </Routes>
 
         

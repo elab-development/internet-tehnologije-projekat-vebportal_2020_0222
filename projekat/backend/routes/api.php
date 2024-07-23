@@ -27,71 +27,53 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/articles/latest',[ArticleController::class, 'getLatestArticle']);
+//articles
+Route::get('/articles/latest', [ArticleController::class, 'getLatestArticle']);
 Route::get('/vrati', [ArticleController::class, 'index']);
 Route::get('/articles/vrati', [ArticleController::class, 'getArticleByName']);
-Route::get('/articles/paginate',[ArticleController::class,'getAllArticlePagination']);
-//rute vezane za autore
-
-//Route::get('/authors', [AuthorController::class, 'index']);
-Route::get('/authors/{id}', [AuthorController::class, 'show']);
-Route::get('/authors', [AuthorController::class, 'index']);
-
-
-//CRUD operacije vezane za clanke
+Route::get('/articles/paginate', [ArticleController::class, 'getAllArticlePagination']);
 Route::resource('/articles', ArticleController::class);
 Route::get('/articles/category/{id}', [ArticleController::class, 'getArticlesByCategory']);
+Route::post('/articles/search',[ArticleController::class,'searchArticles']);
 
+//authors
+Route::get('/authors/{id}', [AuthorController::class, 'show']);
+Route::get('/authors', [AuthorController::class, 'index']);
 Route::resource('authors', AuthorController::class);
+Route::get('/paginate/authors', [AuthorController::class, 'getAllAuthorsPagination']);
+
+//categories
 Route::resource('categories', CategoryController::class);
-Route::put('izmeniKomentar/{id}', [CommentController::class, 'update']);
-Route::post('kreirajKomentar', [CommentController::class, 'store']);
+
+//comments
+Route::put('izmeniKomentar/{id}', [CommentController::class, 'update']); //razmisliti
 Route::get('/comments/byArticleId/{id}', [CommentController::class, 'getAllCommentsByArticleId']);
 Route::get('/comments/mostPositive/{id}', [CommentController::class, 'getCommentsWithMostPositiveVotes']);
 Route::get('/comments/mostNegative/{id}', [CommentController::class, 'getCommentsWithMostNegativeVotes']);
-
+Route::get('/paginate/comments', [CommentController::class, 'getAllCommentsPagination']);
 
 //registracija i login
 Route::post('/auth/register', [AuthController::class, 'register']);
 Route::post('/auth/login', [AuthController::class, 'login']);
+
+//razno
 Route::put('/comments/{id}', [CommentController::class, 'update']);
-Route::post('/comments', [CommentController::class, 'store']);
-//samo autentifikovani korisnici
-
-/* Route::middleware('auth:sanctum')->group(function () {
 
 
-    //rute vezane za komentare
-
-    Route::get('/comments', [CommentController::class, 'index']);
-    Route::get('comments/{id}', [CommentController::class, 'show']);
-    Route::post('/comments', [CommentController::class, 'store']);
-    Route::put('/comments/{id}', [CommentController::class, 'update']);
-    Route::delete('/comments', [CommentController::class, 'destroy']);
-    
-
-    Route::post('/auth/logout', [AuthController::class, 'logout']);
-}); */
-
-//ovde treba da se radi
-
-Route::patch('/comments/negativeVotes/{id}',[CommentController::class, 'addNegativeVotes']);
-Route::patch('/comments/positiveVotes/{id}',[CommentController::class, 'addPositiveVotes']);
-Route::get('/paginate/comments',[CommentController::class,'getAllCommentsPagination']);
-Route::get('/paginate/authors',[AuthorController::class,'getAllAuthorsPagination']);
-Route::get('/teamByName',[TeamController::class, 'findByName']);
-Route::get('/nonadmins',[UserController::class,'getNonAdmins']);
 
 
+//ulogovani korisnici
 Route::middleware(['auth:sanctum', 'user'])->group(function () {
     //Route::post('/comments', [CommentController::class, 'store']);
     Route::post('/auth/logout', [AuthController::class, 'logout']);
-    
+    Route::post('/comments', [CommentController::class, 'store']);
+    Route::patch('/comments/negativeVotes/{id}', [CommentController::class, 'addNegativeVotes']);
+    Route::patch('/comments/positiveVotes/{id}', [CommentController::class, 'addPositiveVotes']);
 });
 
-// Rute za administratore
+//Admini
 Route::middleware(['auth:sanctum', 'admin'])->group(function () {
     Route::get('/comments', [CommentController::class, 'index']);
-    Route::post('/auth/logout', [AuthController::class, 'logout']);
-    
+    Route::get('/comments/byUserId/{id}', [CommentController::class, 'getCommentsByUserId']);
+    Route::patch('user/banUser/{id}', [UserController::class, 'banUser']);
 });
