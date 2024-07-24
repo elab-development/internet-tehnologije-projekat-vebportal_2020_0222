@@ -13,7 +13,7 @@ class ArticleController extends Controller
     public function index()
     {
 
-        $articles = Article::with(['authors', 'categories'])->orderByDesc('article_id')->get();
+        $articles = Article::with(['authors', 'categories'])->orderByDesc('article_id')->paginate(3);
 
         if (!$articles) {
 
@@ -113,7 +113,7 @@ class ArticleController extends Controller
     public function getArticlesByCategory($id)
     {
 
-        $articles = Article::where('category_id', $id)->with(['authors', 'categories'])->orderByDesc('article_id')->get();
+        $articles = Article::where('category_id', $id)->with(['authors', 'categories'])->orderByDesc('article_id')->paginate(2);
 
         if (!$articles) {
             return response()->json(['status' => 'Neuspeh', 'poruka' => 'Ne postoje clanci u sistemu!'], 404);
@@ -131,13 +131,20 @@ class ArticleController extends Controller
 
         $search = $request->input('search');
 
-        $articles = Article::where('title','like','%' . $search.'%')->get();
+        $articles = Article::where('title','like','%' . $search.'%')->with(['authors','categories'])->get();
 
         if($articles->isEmpty()){
 
             return response()->json(['status' => 'Neuspeh', 'poruka' => 'Ne postoje clanci u sistemu!'], 404);
 
         }
+
+        foreach ($articles as $article) {
+            $article->image_url = url($article->image_path); 
+            $comments = Comment::where('article_id',$article['article_id'])->get()->count();
+            $article->number_of_comments = $comments;
+        }
+
 
         return  response()->json(['status' => 'Uspesan', 'clanci' => $articles]);
         

@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import "./NavBar.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { searchArticles } from "../../services/articleService";
 
 function NavBar({ isLoggedIn, isAdmin }) {
 
   const [search, setSearch] = useState("");
+  const navigate = useNavigate();
 
   const handleSearchChange = (e) =>{
 
@@ -17,11 +18,16 @@ function NavBar({ isLoggedIn, isAdmin }) {
 
     try {
       e.preventDefault();
-      const data = await searchArticles(search);
-      
+      const pretraga = {
+        search:search
+      }
+      const data = await searchArticles(pretraga);
+      const articles = data.clanci;
+      setSearch("");
+      navigate("/searchArticle",{state:{articles}});
 
     } catch (error) {
-      
+      alert("Nema clanaka sa tim imenom!");
     }
     
 

@@ -15,6 +15,7 @@ import ButtonComment from './components/button-comment/ButtonComment'
 import Articles from './components/article/Articles'
 import User from './components/user/User'
 import ShowUser from './components/user/ShowUser'
+import SearchedArticles from './components/article/SearchedArticles'
 
 function App() {
   
@@ -57,6 +58,8 @@ function App() {
           <Route path='/articles' element={<Articles/>}></Route>
           <Route path='/user' element = {<User user={loggedInUser} setIsLoggedIn={setIsLoggedIn} setLoggedInUser={setLoggedInUser}></User>}></Route>
           <Route path="/showUser" element = {<ShowUser></ShowUser>}></Route>
+          <Route path="/searchArticle" element = {<SearchedArticles></SearchedArticles>}></Route>
+
         </Routes>
 
         

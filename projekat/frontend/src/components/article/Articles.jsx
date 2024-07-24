@@ -10,12 +10,13 @@ function Articles() {
   const { id } = location.state || 0;
   const [articles, setArticles] = useState([]);
   const [commentsArticles, setCommentsArticles] = useState([]);
+  
   useEffect(() => {
     async function fetchData() {
       if (id === 0) {
         const artikli = await index();
-        console.log("Artikli: " + artikli.clanci);
-        setArticles(artikli.clanci);
+        console.log("Artikli: " + artikli.clanci.data);
+        setArticles(artikli.clanci.data);
       } else {
         console.log("Usao drugo: " + id);
         const artikli = await getArticlesByCategory(id);
