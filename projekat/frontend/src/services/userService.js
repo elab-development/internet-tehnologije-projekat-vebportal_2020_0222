@@ -19,5 +19,4 @@ export async function banUser(userId){
 
     return data;
 
-
 }

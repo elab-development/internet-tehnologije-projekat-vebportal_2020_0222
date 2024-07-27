@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApiController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AuthorController;
@@ -7,6 +8,7 @@ use App\Http\Controllers\CategoryController;
 
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\UserController;
 use App\Models\Article;
@@ -59,8 +61,11 @@ Route::post('/auth/login', [AuthController::class, 'login']);
 //razno
 Route::put('/comments/{id}', [CommentController::class, 'update']);
 
+//Mejl
+Route::post('/mail',[MailController::class, 'sendWelcomeEmail']);
 
-
+//Api
+Route::get("/rapid/{tournament_id}/{season_id}",[ApiController::class, 'getStandings']);
 
 //ulogovani korisnici
 Route::middleware(['auth:sanctum', 'user'])->group(function () {

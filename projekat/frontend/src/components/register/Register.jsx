@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { register } from '../../services/authService';
 import { useNavigate } from 'react-router-dom';
 import './Register.css';
+import { sendWelcomeEmail } from '../../services/mailService';
 
 function Register() {
 
@@ -27,6 +28,7 @@ function Register() {
             }
             console.log(user);
             const response = await register(user);
+            await sendWelcomeEmail(user);
             console.log(response.korisnik);
             alert('Uspesan register');
             navigate('/Login');
