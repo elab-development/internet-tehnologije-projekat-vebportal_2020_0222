@@ -53,7 +53,7 @@ function Articles() {
               ))}
             </div>
             <div>
-              <Standings standings={standings}></Standings>
+              {/* <Standings standings={standings}></Standings> */}
             </div>
           </>
         ) : (

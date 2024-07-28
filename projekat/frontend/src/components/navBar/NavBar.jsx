@@ -35,61 +35,63 @@ function NavBar({ isLoggedIn, isAdmin }) {
   }
 
   return (
-    <div>
-      <nav>
-        <ul>
-          <li>
-            <h1>SPORTSKI PORTAL</h1>
+    <div className="navbar-container">
+      <nav className="navbar">
+        <ul className="navbar-list">
+          <li className="navbar-item">
+            <h1 className="navbar-title">SPORTSKI PORTAL</h1>
           </li>
-          <li>
-            <Link to="/articles" state={{ id: 0 }}>
+          <li className="navbar-item">
+            <Link className="navbar-link" to="/articles" state={{ id: 0 }}>
               Početna strana
             </Link>
           </li>
-          <li>
-            <Link to="/articles" state={{ id: 1 }}>
+          <li className="navbar-item">
+            <Link className="navbar-link" to="/articles" state={{ id: 1 }}>
               NBA
             </Link>
           </li>
-          <li>
-            <Link to="/articles" state={{ id: 2 }}>
+          <li className="navbar-item">
+            <Link className="navbar-link" to="/articles" state={{ id: 2 }}>
               Evroliga
             </Link>
           </li>
-          <li>
-            <Link to="/articles" state={{ id: 3 }}>
+          <li className="navbar-item">
+            <Link className="navbar-link" to="/articles" state={{ id: 3 }}>
               Evrokup
             </Link>
           </li>
-          <li>
-          <form onSubmit={handleSearchSubmit}>
+          <li className="navbar-item">
+            <form className="navbar-search-form" onSubmit={handleSearchSubmit}>
               <input
+                className="navbar-search-input"
                 type="text"
                 placeholder="Pretraga..."
                 value={search}
                 onChange={handleSearchChange}
               />
-              <button type="submit">Pretraži</button>
+              <button className="navbar-search-button" type="submit">Pretraži</button>
             </form>
           </li>
           {isLoggedIn ? (
-            <li>
-              <Link to="/user">Korisnik</Link>
+            <li className="navbar-item">
+              <Link className="navbar-link" to="/user">Korisnik</Link>
             </li>
           ) : (
-            <li>
-              <Link to="/login">Login</Link>
+            <li className="navbar-item">
+              <Link className="navbar-link" to="/login">Login</Link>
             </li>
           )}
           {isAdmin && (
-            <li>
-              <Link to="/addArticle">Dodaj članak</Link>
+            <li className="navbar-item">
+              <Link className="navbar-link" to="/addArticle">Dodaj članak</Link>
             </li>
           )}
         </ul>
       </nav>
     </div>
   );
+  
 }
 
 export default NavBar;
