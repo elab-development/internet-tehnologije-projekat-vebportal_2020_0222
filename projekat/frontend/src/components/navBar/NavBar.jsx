@@ -36,62 +36,61 @@ function NavBar({ isLoggedIn, isAdmin }) {
 
   return (
     <div className="navbar-container">
-      <nav className="navbar">
-        <ul className="navbar-list">
+    <nav className="navbar">
+      <ul className="navbar-list">
+        <li className="navbar-item">
+          <h1 className="navbar-title">SPORTSKI PORTAL</h1>
+        </li>
+        <li className="navbar-item">
+          <Link className="navbar-link" to="/articles" state={{ id: 0 }}>
+            Početna strana
+          </Link>
+        </li>
+        <li className="navbar-item">
+          <Link className="navbar-link" to="/articles" state={{ id: 1 }}>
+            NBA
+          </Link>
+        </li>
+        <li className="navbar-item">
+          <Link className="navbar-link" to="/articles" state={{ id: 2 }}>
+            Evroliga
+          </Link>
+        </li>
+        <li className="navbar-item">
+          <Link className="navbar-link" to="/articles" state={{ id: 3 }}>
+            Evrokup
+          </Link>
+        </li>
+        <li className="navbar-item">
+          <form className="navbar-search-form" onSubmit={handleSearchSubmit}>
+            <input
+              className="navbar-search-input"
+              type="text"
+              placeholder="Pretraga..."
+              value={search}
+              onChange={handleSearchChange}
+            />
+            <button className="navbar-search-button" type="submit">Pretraži</button>
+          </form>
+        </li>
+        {isLoggedIn ? (
           <li className="navbar-item">
-            <h1 className="navbar-title">SPORTSKI PORTAL</h1>
+            <Link className="navbar-link" to="/user">Korisnik</Link>
           </li>
+        ) : (
           <li className="navbar-item">
-            <Link className="navbar-link" to="/articles" state={{ id: 0 }}>
-              Početna strana
-            </Link>
+            <Link className="navbar-link" to="/login">Login</Link>
           </li>
+        )}
+        {isAdmin && (
           <li className="navbar-item">
-            <Link className="navbar-link" to="/articles" state={{ id: 1 }}>
-              NBA
-            </Link>
+            <Link className="navbar-link" to="/addArticle">Dodaj članak</Link>
           </li>
-          <li className="navbar-item">
-            <Link className="navbar-link" to="/articles" state={{ id: 2 }}>
-              Evroliga
-            </Link>
-          </li>
-          <li className="navbar-item">
-            <Link className="navbar-link" to="/articles" state={{ id: 3 }}>
-              Evrokup
-            </Link>
-          </li>
-          <li className="navbar-item">
-            <form className="navbar-search-form" onSubmit={handleSearchSubmit}>
-              <input
-                className="navbar-search-input"
-                type="text"
-                placeholder="Pretraga..."
-                value={search}
-                onChange={handleSearchChange}
-              />
-              <button className="navbar-search-button" type="submit">Pretraži</button>
-            </form>
-          </li>
-          {isLoggedIn ? (
-            <li className="navbar-item">
-              <Link className="navbar-link" to="/user">Korisnik</Link>
-            </li>
-          ) : (
-            <li className="navbar-item">
-              <Link className="navbar-link" to="/login">Login</Link>
-            </li>
-          )}
-          {isAdmin && (
-            <li className="navbar-item">
-              <Link className="navbar-link" to="/addArticle">Dodaj članak</Link>
-            </li>
-          )}
-        </ul>
-      </nav>
-    </div>
+        )}
+      </ul>
+    </nav>
+  </div>
   );
-  
 }
 
 export default NavBar;

@@ -58,69 +58,75 @@ function AddArticle() {
   };
 
   return (
-    <div>
-      <h2>Add Article</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="title">Title</label>
+    <div className="addArticle-container">
+      <h2 className="addArticle-title">Add Article</h2>
+      <form onSubmit={handleSubmit} className="addArticle-form">
+        <div className="addArticle-formGroup">
+          <label htmlFor="title" className="addArticle-label">Title</label>
           <input
             type="text"
             id="title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             required
+            className="addArticle-input"
           />
         </div>
-        <div>
-          <label htmlFor="content">Content</label>
+        <div className="addArticle-formGroup">
+          <label htmlFor="content" className="addArticle-label">Content</label>
           <textarea
             id="content"
             rows="5"
             value={content}
             onChange={(e) => setContent(e.target.value)}
             required
+            className="addArticle-textarea"
           ></textarea>
         </div>
-        <div>
-          <label htmlFor="publishingDate">Publishing Date</label>
+        <div className="addArticle-formGroup">
+          <label htmlFor="publishingDate" className="addArticle-label">Publishing Date</label>
           <input
             type="date"
             id="publishingDate"
             value={publishingDate}
             onChange={(e) => setPublishingDate(e.target.value)}
             required
+            className="addArticle-input"
           />
         </div>
-        <div>
-          <label htmlFor="authorId">Author</label>
+        <div className="addArticle-formGroup">
+          <label htmlFor="authorId" className="addArticle-label">Author</label>
           <input
             type="text"
             id="authorId"
             value={authorId}
             onChange={(e) => setAuthorId(e.target.value)}
             required
+            className="addArticle-input"
           />
         </div>
-        <div>
-          <label htmlFor="categoryId">Category</label>
+        <div className="addArticle-formGroup">
+          <label htmlFor="categoryId" className="addArticle-label">Category</label>
           <input
             type="text"
             id="categoryId"
             value={categoryId}
             onChange={(e) => setCategoryId(e.target.value)}
             required
+            className="addArticle-input"
           />
         </div>
-        <div>
-          <label htmlFor="image">Image</label>
+        <div className="addArticle-formGroup">
+          <label htmlFor="image" className="addArticle-label">Image</label>
           <input
             type="file"
             id="image"
             onChange={handleImageChange}
             required
+            className="addArticle-input"
           />
         </div>
-        <button type="submit">
+        <button type="submit" className="addArticle-button">
           Submit
         </button>
       </form>

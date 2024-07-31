@@ -29,21 +29,23 @@ function AddComment() {
   };
 
   return (
-    <div>
-      <h3>Pošalji komentar</h3>
-      <form>
-        <div>
-          <label htmlFor="comment">Vaš komentar</label>
+    <div className="addComment-container">
+      <h3 className="addComment-title">Pošalji komentar</h3>
+      <form className="addComment-form">
+        <div className="addComment-formGroup">
+          <label htmlFor="comment" className="addComment-label">Vaš komentar</label>
           <textarea
             id="comment"
             value={text}
             onChange={(e) => setText(e.target.value)}
             placeholder="Vaš komentar"
+            className="addComment-textarea"
           />
         </div>
         <button
           type="submit"
           onClick={submitHandler}
+          className="addComment-button"
         >
           Pošalji komentar
         </button>

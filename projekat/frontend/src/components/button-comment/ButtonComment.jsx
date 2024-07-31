@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import './ButtonComment.css';
 
 function ButtonComment({ articleId }) {
   const navigate = useNavigate();
@@ -17,7 +18,11 @@ function ButtonComment({ articleId }) {
     navigate("/login");
   };
 
-  return <button onClick={buttonHandler}>Komentariši</button>;
+  return (
+    <button className="buttonComment-btn" onClick={buttonHandler}>
+      Komentariši
+    </button>
+  );
 }
 
 export default ButtonComment;

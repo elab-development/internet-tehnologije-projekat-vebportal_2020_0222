@@ -11,39 +11,48 @@ const ArticleDetails = () => {
   const clickHandler = (e) => {
     e.preventDefault();
     const kategorija = article.categories.category_id;
-    navigate("/articles",{state:{id:kategorija}});
+    navigate("/articles", { state: { id: kategorija } });
   };
 
-  const commentsHandler = (e) =>{
-
+  const commentsHandler = (e) => {
     e.preventDefault();
     if (article.number_of_comments === 0) {
-        return;
-      }
+      return;
+    }
     console.log("Clanak: " + JSON.stringify(article));
-    navigate("/commentsView",{state:{article}});
-
-  }
+    navigate("/commentsView", { state: { article } });
+  };
 
   return (
-    <div>
-      <h1>{article.title}</h1>
-      <div>
-        <span>
-          Autor: {article.authors.name} {article.authors.surname}
-        </span>
-        <span>Datum: {article.publishing_date}</span>
-        <span onClick={clickHandler}>
-          Kategorija: {article.categories.name}
-        </span>
+    <div className="article-details-container">
+      <h1 className="article-details-title">{article.title}</h1>
+      <div className="article-details-header">
+        <div className="article-details-info">
+          <span>
+            Autor: {article.authors.name} {article.authors.surname}
+          </span>
+          <span>Datum: {article.publishing_date}</span>
+          <span onClick={clickHandler}>
+            Kategorija: {article.categories.name}
+          </span>
+        </div>
       </div>
-      <div>
-        <button onClick={commentsHandler}>Prikazi komentare</button>
-        <ButtonComment articleId={article.article_id}/>
+      <div className="article-details-buttons">
+        <button className="article-details-button" onClick={commentsHandler}>
+          Prikazi komentare
+        </button>
+        <ButtonComment articleId={article.article_id} />
       </div>
-
-      <img src={article.image_url}></img>
-      <p>{article.content}</p>
+      <div className="article-details-body">
+        <div className="article-details-image-wrapper">
+          <img
+            className="article-details-image"
+            src={article.image_url}
+            alt={article.title}
+          />
+        </div>
+        <p className="article-details-content">{article.content}</p>
+      </div>
     </div>
   );
 };

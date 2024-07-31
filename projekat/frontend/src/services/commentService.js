@@ -33,7 +33,7 @@ export async function addPositiveVotes(id) {
 
 
   export async function addNegativeVotes(id) {
-    const response = await fetch(apiUrl + "/negativeVotes/" + id, {
+    const response = await fetchWithAuth(apiUrl + "/negativeVotes/" + id, {
       method: "PATCH",
     });
     if (!response.ok) {

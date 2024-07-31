@@ -1,55 +1,64 @@
-.user-container {
+.showUser-container {
     max-width: 600px;
     margin: 100px auto 0;
     padding: 20px;
-    background-color: #f8f9fa; 
+    background-color: #f8f9fa;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
   
-  .user-h2 {
-    text-align: center;
-    color: #333;
-  }
-  
-  .user-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-  .user-form div {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .user-form label {
-    font-weight: bold;
+  .showUser-label {
+    display: block;
     margin-bottom: 5px;
+    font-weight: bold;
     color: #555;
   }
   
-  .user-form input {
+  .showUser-input {
+    width: 100%;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    margin-bottom: 15px;
   }
   
-  .user-button {
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
+  .showUser-button {
+    padding: 10px 20px;
+    margin-right: 10px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    margin-top: 15px;
+    background-color: #007bff;
+    color: white;
+    transition: background-color 0.3s ease;
   }
   
-  .user-button:hover {
+  .showUser-button:hover {
     background-color: #0056b3;
   }
   
-  /* NavBar Styles */
+  .showUser-comments {
+    margin-top: 20px;
+  }
+  
+  .showUser-comment {
+    background-color: #fff;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .showUser-commentTitle {
+    cursor: pointer;
+    color: #007bff;
+  }
+  
+  .showUser-commentTitle:hover {
+    text-decoration: underline;
+  }
+  
+  /* Navbar Styles */
   .navbar-container {
     position: relative;
   }

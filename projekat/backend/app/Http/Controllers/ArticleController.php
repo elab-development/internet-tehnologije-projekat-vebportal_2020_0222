@@ -13,7 +13,7 @@ class ArticleController extends Controller
     public function index()
     {
 
-        $articles = Article::with(['authors', 'categories'])->orderByDesc('article_id')->paginate(3);
+        $articles = Article::with(['authors', 'categories'])->orderByDesc('article_id')->paginate(5);
 
         if (!$articles) {
 

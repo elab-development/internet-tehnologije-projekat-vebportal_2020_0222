@@ -20,47 +20,41 @@ function CommentView() {
     fetchData();
   }, [article]);
 
-  const positiveHandler = async(e) =>{
-
+  const positiveHandler = async (e) => {
     try {
-        e.preventDefault();
-        const positive = await getCommentsWithMostPositiveVotes(article.article_id);
-        console.log("Pozitiva: " + JSON.stringify(positive.komentari));
-        setComments(positive.komentari);
-
+      e.preventDefault();
+      const positive = await getCommentsWithMostPositiveVotes(article.article_id);
+      console.log("Pozitiva: " + JSON.stringify(positive.komentari));
+      setComments(positive.komentari);
     } catch (error) {
-        console.log(error.message);
+      console.log(error.message);
     }
-
   }
 
-  const negativeHandler = async(e) =>{
-
+  const negativeHandler = async (e) => {
     try {
-        e.preventDefault();
-        const negative = await getCommentsWithMostNegativeVotes(article.article_id);
-        console.log("Pozitiva: " + JSON.stringify(negative.komentari));
-        setComments(negative.komentari);
-
+      e.preventDefault();
+      const negative = await getCommentsWithMostNegativeVotes(article.article_id);
+      console.log("Negativa: " + JSON.stringify(negative.komentari));
+      setComments(negative.komentari);
     } catch (error) {
-        alert(error.message);
+      alert(error.message);
     }
-
   }
 
   return (
-    <div>
+    <div className="commentView-container">
       {comments.length === 0 ? (
-        <h1>Učitavanje...</h1>
+        <h1 className="commentView-loading">Učitavanje...</h1>
       ) : (
         <div>
-          <h2>{article.title}</h2>
+          <h2 className="commentView-title">{article.title}</h2>
           <ButtonComment articleId={article.article_id}></ButtonComment>
-          <div>
+          <div className="commentView-buttons">
             <h4 onClick={positiveHandler}>Pozitivni</h4>
             <h4 onClick={negativeHandler}>Negativni</h4>
           </div>
-          <div>
+          <div className="commentView-comments">
             {comments.map((comment, index) => (
               <CommentComp key={index} index={index} comment={comment} />
             ))}

@@ -3,65 +3,68 @@ import './User.css';
 import { useNavigate } from 'react-router-dom';
 import { logout } from '../../services/authService';
 
-function User({user,setIsLoggedIn, setLoggedInUser}) {
+function User({ user, setIsLoggedIn, setLoggedInUser }) {
+  const navigate = useNavigate();
 
-    const navigate = useNavigate();
-
-    const handleLogout = async () => {
-        try {
-          await logout();
-          setLoggedInUser(null);
-          setIsLoggedIn(false);
-          navigate("/");
-        } catch (error) {
-          alert(error.message);
-        }
-        
-      };
+  const handleLogout = async () => {
+    try {
+      await logout();
+      setLoggedInUser(null);
+      setIsLoggedIn(false);
+      navigate("/");
+    } catch (error) {
+      alert(error.message);
+    }
+  };
 
   return (
-    <div className="container mt-4">
-      <h2>User Details</h2>
-      <form>
+    <div className="user-container mt-4">
+      <h2 className="user-h2">User Details</h2>
+      <form className="user-form">
         <div>
-          <label htmlFor="userId">User ID:</label>
+          <label htmlFor="userId" className="user-label">User ID:</label>
           <input
             type="text"
             id="userId"
-             value={user.user_id}
+            value={user.user_id}
             readOnly
+            className="user-input"
           />
         </div>
-        <div >
-          <label htmlFor="firstName">Name:</label>
+        <div>
+          <label htmlFor="firstName" className="user-label">Name:</label>
           <input
             type="text"
             id="firstName"
             value={user.name}
             readOnly
+            className="user-input"
           />
         </div>
-        <div >
-          <label htmlFor="surname">Surname:</label>
+        <div>
+          <label htmlFor="surname" className="user-label">Surname:</label>
           <input
             type="text"
             id="surname"
-             value={user.surname}
+            value={user.surname}
             readOnly
+            className="user-input"
           />
         </div>
-        <div >
-          <label htmlFor="username">Username:</label>
+        <div>
+          <label htmlFor="username" className="user-label">Username:</label>
           <input
             type="text"
             id="username"
-             value={user.username} 
+            value={user.username}
             readOnly
+            className="user-input"
           />
         </div>
         <button
           type="button"
-           onClick={handleLogout}
+          className="user-button"
+          onClick={handleLogout}
         >
           Logout
         </button>

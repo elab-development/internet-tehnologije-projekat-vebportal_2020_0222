@@ -1,0 +1,95 @@
+.main-article-container {
+    margin: 80px auto;
+    max-width: 1000px;
+  }
+  
+  .main-article-article {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    min-height: 400px;
+  }
+  
+  .main-article-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #f9f9f9;
+    position: relative;
+  }
+  
+  .main-article-author {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #fff;
+    background-color: #007bff;
+    padding: 5px 10px;
+    border-radius: 5px;
+  }
+  
+  .main-article-comments {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    font-size: 1.5rem;
+  }
+  
+  .main-article-comment-count {
+    margin-right: 10px;
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: black;
+  }
+  
+  .main-article-comment-icon {
+    color: #007bff;
+    font-size: 2rem;
+    position: relative;
+  }
+  
+  .main-article-body {
+    display: flex;
+    height: 100%;
+  }
+  
+  .main-article-image-wrapper {
+    width: 300px;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+  
+  .main-article-image {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  .main-article-title-wrapper {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    flex-direction: column;
+  }
+  
+  .main-article-title {
+    font-size: 2.5rem;
+    color: #333;
+    cursor: pointer;
+    margin: 0;
+  }
+  
+  .main-article-title:hover {
+    color: #007bff;
+  }
+  
+  .main-article-comment-icon::before {
+    content: "\f075";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+  }
+  

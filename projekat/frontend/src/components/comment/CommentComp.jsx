@@ -4,6 +4,7 @@ import {
   addPositiveVotes,
 } from "../../services/commentService";
 import { useNavigate } from "react-router-dom";
+import "./CommentComp.css";
 
 function CommentComp({ comment }) {
   const [positive, setPositive] = useState(comment.positive_votes);
@@ -25,6 +26,7 @@ function CommentComp({ comment }) {
   const addNegativeVote = async (e) => {
     e.preventDefault();
     try {
+      console.log("Usao ovde!");
       await addNegativeVotes(comment.comment_id);
       setNegative((prev) => prev + 1);
     } catch (error) {
@@ -35,28 +37,44 @@ function CommentComp({ comment }) {
 
   const userHandler = (e) => {
     e.preventDefault();
+    const loggedUser = JSON.parse(localStorage.getItem("user"));
+    if(!loggedUser){
+      navigate("/login");
+      return;
+    }
     const user = comment.users;
     console.log("Najnovije: " + JSON.stringify(user));
     navigate("/showUser", { state: { user } });
   };
 
   return (
-    <div>
-      <div>
-        <div onClick={userHandler}>{comment.users.name.charAt(0)}</div>
-        <div>
-          <span>{comment.users.name}</span>
-          <span>fasdf</span>
+    <div className="commentComp-container">
+      <div className="commentComp-header">
+        <div className="commentComp-avatar" onClick={userHandler}>
+          {comment.users.name.charAt(0)}
+        </div>
+        <div className="commentComp-userInfo">
+          <span className="commentComp-userName" onClick={userHandler}>
+            {comment.users.name}
+          </span>
         </div>
       </div>
-      <div>{comment.text}</div>
-      <div>
-        <div>
-          <button onClick={addPositiveVote}>+</button>
-          <span>{positive}</span>
-          <button onClick={addNegativeVote}>-</button>
-          <span>{negative}</span>
-        </div>
+      <div className="commentComp-text">{comment.text}</div>
+      <div className="commentComp-votes">
+        <button
+          className="commentComp-voteButton positive"
+          onClick={addPositiveVote}
+        >
+          +
+        </button>
+        <span className="commentComp-voteCount">{positive}</span>
+        <button
+          className="commentComp-voteButton negative"
+          onClick={addNegativeVote}
+        >
+          -
+        </button>
+        <span className="commentComp-voteCount">{negative}</span>
       </div>
     </div>
   );

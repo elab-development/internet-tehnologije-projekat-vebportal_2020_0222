@@ -1,0 +1,47 @@
+.addArticle-container {
+    padding: 20px;
+    margin-top: 60px;
+  }
+  
+  .addArticle-title {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .addArticle-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .addArticle-formGroup {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .addArticle-label {
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .addArticle-input,
+  .addArticle-textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .addArticle-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .addArticle-button:hover {
+    background-color: #0056b3;
+  }
+  
