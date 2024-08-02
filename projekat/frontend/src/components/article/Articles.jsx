@@ -3,41 +3,46 @@ import { getArticlesByCategory, index } from "../../services/articleService";
 import Article from "./Article";
 import MainArticle from "./MainArticle";
 import { useLocation } from "react-router-dom";
-import { getCommentsByArticleId } from "../../services/commentService";
 import { getStandings } from "../../services/rapidApiService";
-import Standings from "../Standings";
+import Standings from "../standings/Standings";
+import "./Articles.css";
 
 function Articles() {
   const location = useLocation();
   const { id } = location.state || 0;
   const [articles, setArticles] = useState([]);
-  const [commentsArticles, setCommentsArticles] = useState([]);
   const [standings, setStandings] = useState([]);
-  const [tournamentId, setTournamentId] = useState(null);
 
-  //Evroliga 138, Evrokup 148, 
   useEffect(() => {
     async function fetchData() {
       if (id === 0) {
         const artikli = await index();
-        console.log("Artikli: " + artikli.clanci.data);
         setArticles(artikli.clanci.data);
       } else {
-        console.log("Usao drugo: " + id);
         const artikli = await getArticlesByCategory(id);
-        console.log(artikli);
         setArticles(artikli.clanci.data);
       }
 
-      const tabela = await getStandings(138, 53198);
-      setStandings(tabela.standings);
-      console.log("Tablica: " + JSON.stringify(tabela.standings));
-      console.log(JSON.stringify(commentsArticles));
-      console.log("Bok decki: " + id);
+      //const tabela = await getStandings(138, 53198);
+      //setStandings(tabela.standings);
     }
 
     fetchData();
   }, [id]);
+
+  const renderArticles = (articles) => {
+    const articleChunks = [];
+    for (let i = 0; i < articles.length; i += 2) {
+      articleChunks.push(articles.slice(i, i + 2));
+    }
+    return articleChunks.map((chunk, index) => (
+      <div className="articles-row" key={index}>
+        {chunk.map((article, idx) => (
+          <Article key={idx} article={article} />
+        ))}
+      </div>
+    ));
+  };
 
   return (
     <div>
@@ -47,17 +52,14 @@ function Articles() {
             <div>
               <MainArticle article={articles[0]} />
             </div>
+            {renderArticles(articles.slice(1, 3))}
             <div>
-              {articles.slice(1).map((article, index) => (
-                <Article key={index} article={article} />
-              ))}
+              {/* <Standings standings={standings} /> */}
             </div>
-            <div>
-              {/* <Standings standings={standings}></Standings> */}
-            </div>
+            {renderArticles(articles.slice(3))}
           </>
         ) : (
-          <p>Nema članaka u sistemu!</p>
+          <p>Učitavanje...</p>
         )}
       </div>
     </div>
@@ -65,3 +67,4 @@ function Articles() {
 }
 
 export default Articles;
+

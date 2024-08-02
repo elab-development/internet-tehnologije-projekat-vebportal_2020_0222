@@ -9,7 +9,11 @@ function AddArticle() {
   const [authorId, setAuthorId] = useState("");
   const [categoryId, setCategoryId] = useState("");
   const [image, setImage] = useState(null);
-
+  const categories = [
+    { id: 1, name: "NBA" },
+    { id: 2, name: "Euroleague" },
+    { id: 3, name: "Eurocup" }
+  ];
   const handleImageChange = (e) => {
     const file = e.target.files[0];
 
@@ -37,7 +41,13 @@ function AddArticle() {
     const formData = new FormData();
     formData.append("title", title);
     formData.append("content", content);
-    formData.append("publishing_date", publishingDate);
+
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    const month = String(currentDate.getMonth() + 1).padStart(2, "0");
+    const day = String(currentDate.getDate()).padStart(2, "0");
+    const formattedDate = `${year}-${month}-${day}`;
+    formData.append("publishing_date", formattedDate);
     formData.append("author_id", authorId);
     formData.append("category_id", categoryId);
     formData.append("image", image);
@@ -62,7 +72,9 @@ function AddArticle() {
       <h2 className="addArticle-title">Add Article</h2>
       <form onSubmit={handleSubmit} className="addArticle-form">
         <div className="addArticle-formGroup">
-          <label htmlFor="title" className="addArticle-label">Title</label>
+          <label htmlFor="title" className="addArticle-label">
+            Title
+          </label>
           <input
             type="text"
             id="title"
@@ -73,7 +85,9 @@ function AddArticle() {
           />
         </div>
         <div className="addArticle-formGroup">
-          <label htmlFor="content" className="addArticle-label">Content</label>
+          <label htmlFor="content" className="addArticle-label">
+            Content
+          </label>
           <textarea
             id="content"
             rows="5"
@@ -84,18 +98,9 @@ function AddArticle() {
           ></textarea>
         </div>
         <div className="addArticle-formGroup">
-          <label htmlFor="publishingDate" className="addArticle-label">Publishing Date</label>
-          <input
-            type="date"
-            id="publishingDate"
-            value={publishingDate}
-            onChange={(e) => setPublishingDate(e.target.value)}
-            required
-            className="addArticle-input"
-          />
-        </div>
-        <div className="addArticle-formGroup">
-          <label htmlFor="authorId" className="addArticle-label">Author</label>
+          <label htmlFor="authorId" className="addArticle-label">
+            Author ID
+          </label>
           <input
             type="text"
             id="authorId"
@@ -106,18 +111,30 @@ function AddArticle() {
           />
         </div>
         <div className="addArticle-formGroup">
-          <label htmlFor="categoryId" className="addArticle-label">Category</label>
-          <input
-            type="text"
-            id="categoryId"
-            value={categoryId}
-            onChange={(e) => setCategoryId(e.target.value)}
-            required
-            className="addArticle-input"
-          />
-        </div>
+      <label htmlFor="categoryId" className="addArticle-label">
+        Category
+      </label>
+      <select
+        id="categoryId"
+        value={categoryId}
+        onChange={(e) => setCategoryId(e.target.value)}
+        required
+        className="addArticle-input"
+      >
+        <option value="" disabled>
+          Select a category
+        </option>
+        {categories.map((category) => (
+          <option key={category.id} value={category.id}>
+            {category.name}
+          </option>
+        ))}
+      </select>
+    </div>
         <div className="addArticle-formGroup">
-          <label htmlFor="image" className="addArticle-label">Image</label>
+          <label htmlFor="image" className="addArticle-label">
+            Image
+          </label>
           <input
             type="file"
             id="image"

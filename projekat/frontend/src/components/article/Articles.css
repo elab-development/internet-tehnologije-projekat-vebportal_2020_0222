@@ -1,0 +1,18 @@
+.articles-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .articles-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .article-container {
+    flex: 0 0 48%;
+    max-width: 48%;
+  }
+  
+  

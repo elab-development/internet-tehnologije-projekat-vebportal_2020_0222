@@ -2,12 +2,14 @@ import React from "react";
 import "./ArticleDetails.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import ButtonComment from "../button-comment/ButtonComment";
+import { destroy } from "../../services/articleService";
 
 const ArticleDetails = () => {
   const location = useLocation();
   const { article } = location.state || {};
   const navigate = useNavigate();
-
+  const user = JSON.parse(localStorage.getItem("user"));
+  
   const clickHandler = (e) => {
     e.preventDefault();
     const kategorija = article.categories.category_id;
@@ -21,6 +23,18 @@ const ArticleDetails = () => {
     }
     console.log("Clanak: " + JSON.stringify(article));
     navigate("/commentsView", { state: { article } });
+  };
+
+  const deleteHandler = async (e) => {
+    e.preventDefault();
+    try {
+      const kategorija = article.categories.category_id;
+      await destroy(article.article_id);
+      alert("Uspesno obrisan clanak!");
+      navigate("/articles", {state:{id:kategorija}});
+    } catch (error) {
+      alert(error.message);
+    }
   };
 
   return (
@@ -42,6 +56,11 @@ const ArticleDetails = () => {
           Prikazi komentare
         </button>
         <ButtonComment articleId={article.article_id} />
+        {(user && user.isAdmin )?(
+          <button className="article-details-button" onClick={deleteHandler}>
+            Obriši članak
+          </button>
+        ):<></>}
       </div>
       <div className="article-details-body">
         <div className="article-details-image-wrapper">

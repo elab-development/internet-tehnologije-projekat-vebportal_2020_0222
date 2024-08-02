@@ -46,7 +46,7 @@ export async function addPositiveVotes(id) {
   }
 
   export async function store(comment) {
-    const response = await fetch(apiUrl, {
+    const response = await fetchWithAuth(apiUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

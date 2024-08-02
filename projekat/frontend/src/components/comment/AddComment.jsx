@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import "./AddComment.css";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { store } from "../../services/commentService";
+import { show } from "../../services/articleService";
 
 function AddComment() {
   const location = useLocation();
   const { articleId } = location.state || {};
   const [text, setText] = useState("");
   const [userId, setUserId] = useState(null);
+  const navigate = useNavigate();
 
   const submitHandler = async (e) => {
     try {
@@ -23,6 +25,9 @@ function AddComment() {
 
       console.log("Comment: " + JSON.stringify(comment));
       await store(comment);
+      const clanak = await show(articleId);
+      const article = clanak.article;
+      navigate("/articleDetails",{state:{article}});
     } catch (error) {
       alert(error.message);
     }

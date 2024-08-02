@@ -88,6 +88,21 @@ class ArticleController extends Controller
         $article = Article::where('articles', $id)->first();
     }
 
+    public function destroy($id){
+
+        $article = Article::where('article_id',$id)->first();
+
+        if(!$article){
+
+            return response()->json(['status'=>'Neuspesan', 'poruka' => 'Ne postoji takav clanak u sistemu!'],404);
+
+        }
+
+        $article->delete();
+
+        return response()->json(['status' => 'Uspesan']);
+
+    }
 
     public function getAllArticlePagination()
     {

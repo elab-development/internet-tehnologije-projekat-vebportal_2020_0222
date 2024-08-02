@@ -1,3 +1,5 @@
+import fetchWithAuth from "./authService";
+
 const apiUrl = "http://localhost:8000/api/articles";
 
 export async function index() {
@@ -37,6 +39,23 @@ export async function show(id) {
   const data = await response.json();
 
   return data;
+}
+
+export async function destroy(id){
+
+  const response = await fetchWithAuth(apiUrl+"/"+id,{
+    method: "DELETE"
+  });
+
+  if(!response.ok){
+
+    throw new Error("Nije uspelo brisanje clanka!");
+  }
+
+  const data = await response.json();
+
+  return data;
+
 }
 
 export async function update(article, id) {

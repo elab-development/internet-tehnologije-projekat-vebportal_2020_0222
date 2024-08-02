@@ -1,12 +1,13 @@
 import React from 'react';
+import './Standings.css';
 
 function Standings({ standings }) {
   return (
-    <div>
+    <div className="standings-container">
       {standings.map((group, index) => (
-        <div key={index}>
-          <h2>{group.tournament.name}</h2>
-          <table>
+        <div key={index} className="standings-group">
+          <h2 className="standings-tournament-name">Tabela Evrolige</h2>
+          <table className="standings-table">
             <thead>
               <tr>
                 <th>Pozicija</th>

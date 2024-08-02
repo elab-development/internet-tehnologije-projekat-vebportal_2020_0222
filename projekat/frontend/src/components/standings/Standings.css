@@ -1,0 +1,52 @@
+.standings-container {
+    margin: 20px auto;
+    max-width: 1000px;
+  }
+  
+  .standings-group {
+    margin-bottom: 30px;
+  }
+  
+  .standings-tournament-name {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .standings-table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .standings-table th,
+  .standings-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .standings-table th {
+    background-color: #f9f9f9;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .standings-table td {
+    background-color: #fff;
+    color: #333;
+  }
+  
+  .standings-table tr:nth-child(even) td {
+    background-color: #f2f2f2;
+  }
+  
+  .standings-table tr:hover td {
+    background-color: #ddd;
+  }
+  
+  .standings-table th,
+  .standings-table td {
+    text-align: center;
+  }
+  
