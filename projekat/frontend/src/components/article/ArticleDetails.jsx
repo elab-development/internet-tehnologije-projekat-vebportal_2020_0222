@@ -53,11 +53,11 @@ const ArticleDetails = () => {
       </div>
       <div className="article-details-buttons">
         <button className="article-details-button" onClick={commentsHandler}>
-          Prikazi komentare
+          Prikaži komentare
         </button>
         <ButtonComment articleId={article.article_id} />
         {(user && user.isAdmin )?(
-          <button className="article-details-button" onClick={deleteHandler}>
+          <button className="article-delete-button" onClick={deleteHandler}>
             Obriši članak
           </button>
         ):<></>}

@@ -12,6 +12,7 @@ function User({ user, setIsLoggedIn, setLoggedInUser }) {
       setLoggedInUser(null);
       setIsLoggedIn(false);
       navigate("/");
+      window.location.reload();
     } catch (error) {
       alert(error.message);
     }

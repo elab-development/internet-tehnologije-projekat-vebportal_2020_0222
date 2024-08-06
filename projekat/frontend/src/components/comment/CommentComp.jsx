@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import {
   addNegativeVotes,
   addPositiveVotes,
+  destroy,
 } from "../../services/commentService";
 import { useNavigate } from "react-router-dom";
 import "./CommentComp.css";
@@ -10,6 +11,7 @@ function CommentComp({ comment }) {
   const [positive, setPositive] = useState(comment.positive_votes);
   const [negative, setNegative] = useState(comment.negative_votes);
   const navigate = useNavigate();
+  const user = JSON.parse(localStorage.getItem("user"));
 
   const addPositiveVote = async (e) => {
     e.preventDefault();
@@ -47,6 +49,18 @@ function CommentComp({ comment }) {
     navigate("/showUser", { state: { user } });
   };
 
+  const deleteHandler = async(commentId) =>{
+
+    try {
+      await destroy(commentId);
+      alert("Uspelo je brisanje komentara!");
+      window.location.reload();
+    } catch (error) {
+      alert(error.message);
+    }
+
+  }
+
   return (
     <div className="commentComp-container">
       <div className="commentComp-header">
@@ -75,6 +89,11 @@ function CommentComp({ comment }) {
           -
         </button>
         <span className="commentComp-voteCount">{negative}</span>
+        {user && user.isAdmin && (
+          <button className="commentComp-deleteButton" onClick={()=>deleteHandler(comment.comment_id)}>
+            Obrisi komentar
+          </button>
+        )}
       </div>
     </div>
   );

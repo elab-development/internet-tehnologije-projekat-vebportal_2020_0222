@@ -54,6 +54,7 @@ Route::get('/comments/mostPositive/{id}', [CommentController::class, 'getComment
 Route::get('/comments/mostNegative/{id}', [CommentController::class, 'getCommentsWithMostNegativeVotes']);
 Route::get('/paginate/comments', [CommentController::class, 'getAllCommentsPagination']);
 
+
 //registracija i login
 Route::post('/auth/register', [AuthController::class, 'register']);
 Route::post('/auth/login', [AuthController::class, 'login']);
@@ -81,4 +82,5 @@ Route::middleware(['auth:sanctum', 'admin'])->group(function () {
     Route::get('/comments', [CommentController::class, 'index']);
     Route::get('/comments/byUserId/{id}', [CommentController::class, 'getCommentsByUserId']);
     Route::patch('user/banUser/{id}', [UserController::class, 'banUser']);
+    Route::delete('/comments/{id}',[CommentController::class, 'destroy']);
 });

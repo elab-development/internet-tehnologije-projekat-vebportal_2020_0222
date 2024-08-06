@@ -128,7 +128,7 @@ class ArticleController extends Controller
     public function getArticlesByCategory($id)
     {
 
-        $articles = Article::where('category_id', $id)->with(['authors', 'categories'])->orderByDesc('article_id')->paginate(2);
+        $articles = Article::where('category_id', $id)->with(['authors', 'categories'])->orderByDesc('article_id')->paginate(5);
 
         if (!$articles) {
             return response()->json(['status' => 'Neuspeh', 'poruka' => 'Ne postoje clanci u sistemu!'], 404);

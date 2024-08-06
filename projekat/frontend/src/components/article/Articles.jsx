@@ -12,6 +12,7 @@ function Articles() {
   const { id } = location.state || 0;
   const [articles, setArticles] = useState([]);
   const [standings, setStandings] = useState([]);
+  const [pageNumber, setPageNumber] = useState(1);
 
   useEffect(() => {
     async function fetchData() {
@@ -44,6 +45,27 @@ function Articles() {
     ));
   };
 
+  const loadMoreArticles = async () => {
+    try {
+      let loadedArticles;
+      setPageNumber((prev) => prev + 1);
+      if(id === 0){
+        const response = await index(pageNumber);
+        loadedArticles = response.clanci.data;
+      }
+
+      else{
+        const response = await getArticlesByCategory(id,pageNumber);
+        loadedArticles = response.clanci.data;
+      }
+
+      console.log(JSON.stringify(loadedArticles));
+      setArticles([...articles, ...loadedArticles]);
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
   return (
     <div>
       <div>
@@ -53,10 +75,16 @@ function Articles() {
               <MainArticle article={articles[0]} />
             </div>
             {renderArticles(articles.slice(1, 3))}
-            <div>
-              {/* <Standings standings={standings} /> */}
-            </div>
+            <div>{/* <Standings standings={standings} /> */}</div>
             {renderArticles(articles.slice(3))}
+            <div className="articles-button-containter">
+              <button
+                className="articles-button-show-more"
+                onClick={loadMoreArticles}
+              >
+                Učitaj više
+              </button>
+            </div>
           </>
         ) : (
           <p>Učitavanje...</p>
@@ -67,4 +95,3 @@ function Articles() {
 }
 
 export default Articles;
-

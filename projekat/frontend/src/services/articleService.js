@@ -2,11 +2,21 @@ import fetchWithAuth from "./authService";
 
 const apiUrl = "http://localhost:8000/api/articles";
 
-export async function index() {
-  const response = await fetch(apiUrl, {
-    method: "GET",
-  });
+export async function index(pageNumber) {
 
+  let response;
+
+  if(pageNumber === 0 || pageNumber){
+    response = await fetch(apiUrl, {
+      method: "GET",
+    });
+  }
+  else{
+     response = await fetch(apiUrl + "?page="+pageNumber,{
+      method:"GET",
+    });
+  }
+  
   const data = await response.json();
 
   return data;
@@ -94,10 +104,21 @@ export async function getLatestArticle() {
   return data;
 }
 
-export async function getArticlesByCategory(id) {
-  const response = await fetch(apiUrl + "/category/" + id, {
-    method: "GET",
-  });
+export async function getArticlesByCategory(id,pageNumber) {
+
+  let response;
+
+  if(pageNumber ===0 || pageNumber){
+     response = await fetch(apiUrl + "/category/" + id, {
+      method: "GET",
+    });
+  }
+
+  else{
+    response = await fetch(apiUrl + "/category/" + id + "?page=" + pageNumber, {
+      method: "GET",
+    });
+  }
 
   if (!response.ok) {
     throw new Error(response.status);

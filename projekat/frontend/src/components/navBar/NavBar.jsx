@@ -30,8 +30,13 @@ function NavBar({ isLoggedIn, isAdmin }) {
       alert("Nema clanaka sa tim imenom!");
     }
     
+  }
 
-    
+  const clickHandlerTitle = (e) =>{
+
+    e.preventDefault();
+    navigate("/");
+
   }
 
   return (
@@ -39,7 +44,7 @@ function NavBar({ isLoggedIn, isAdmin }) {
     <nav className="navbar">
       <ul className="navbar-list">
         <li className="navbar-item">
-          <h1 className="navbar-title">SPORTSKI PORTAL</h1>
+          <h1 className="navbar-title" onClick={clickHandlerTitle}>SPORTSKI PORTAL</h1>
         </li>
         <li className="navbar-item">
           <Link className="navbar-link" to="/articles" state={{ id: 0 }}>

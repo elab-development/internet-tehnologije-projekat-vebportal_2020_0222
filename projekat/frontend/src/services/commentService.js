@@ -103,3 +103,21 @@ export async function getCommentsByUserId(userId){
   return data;
 
 }
+
+export async function destroy(id){
+
+  const response = await fetchWithAuth(apiUrl+"/" + id, {
+    method:"DELETE"
+  });
+
+  if(!response.ok){
+
+    throw new Error("Nije uspelo brisanje komentara");
+
+  }
+
+  const data = await response.json();
+
+  return data;
+
+}
