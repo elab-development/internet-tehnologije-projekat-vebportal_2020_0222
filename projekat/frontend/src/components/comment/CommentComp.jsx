@@ -89,11 +89,11 @@ function CommentComp({ comment }) {
           -
         </button>
         <span className="commentComp-voteCount">{negative}</span>
-        {user && user.isAdmin && (
+        {user && user.isAdmin ? (
           <button className="commentComp-deleteButton" onClick={()=>deleteHandler(comment.comment_id)}>
             Obrisi komentar
           </button>
-        )}
+        ):<></>}
       </div>
     </div>
   );

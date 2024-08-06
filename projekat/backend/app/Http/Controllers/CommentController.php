@@ -190,4 +190,18 @@ class CommentController extends Controller
 
     }
 
+    public function showCommentByUserAndArticle($article_id, $user_id){
+
+        $comment = Comment::where('article_id',$article_id)->where('user_id',$user_id)->first();
+
+        if(!$comment){
+
+            return response()->json(['status' => 'Neuspesan', 'poruka' => 'Ne postoji takav komentar u sistemu!'], 404);
+
+        }
+
+        return response()->json(['status'=> 'Uspesan', 'komentar' => $comment],200);
+
+    }
+
 }

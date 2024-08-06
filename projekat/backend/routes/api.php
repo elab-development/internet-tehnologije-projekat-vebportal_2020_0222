@@ -53,7 +53,7 @@ Route::get('/comments/byArticleId/{id}', [CommentController::class, 'getAllComme
 Route::get('/comments/mostPositive/{id}', [CommentController::class, 'getCommentsWithMostPositiveVotes']);
 Route::get('/comments/mostNegative/{id}', [CommentController::class, 'getCommentsWithMostNegativeVotes']);
 Route::get('/paginate/comments', [CommentController::class, 'getAllCommentsPagination']);
-
+Route::get('/comments/{article_id}/{user_id}',[CommentController::class, 'showCommentByUserAndArticle']);
 
 //registracija i login
 Route::post('/auth/register', [AuthController::class, 'register']);

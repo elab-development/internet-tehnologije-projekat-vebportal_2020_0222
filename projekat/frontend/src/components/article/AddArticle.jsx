@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { store } from "../../services/articleService";
 import "./AddArticle.css";
+import { show } from "../../services/authorService";
 
 function AddArticle() {
   const [title, setTitle] = useState("");
@@ -54,6 +55,7 @@ function AddArticle() {
     console.log("Form data: " + formData);
     console.log("JSON form data: " + JSON.stringify(formData));
     try {
+      await show(authorId);
       const response = await store(formData);
       console.log(JSON.stringify(response));
       setTitle("");
@@ -62,18 +64,19 @@ function AddArticle() {
       setAuthorId("");
       setCategoryId("");
       setImage(null);
+      alert("Clanak je uspesno dodat!");
     } catch (error) {
-      console.error("There was an error uploading the article!", error);
+      alert(error.message);
     }
   };
 
   return (
     <div className="addArticle-container">
-      <h2 className="addArticle-title">Add Article</h2>
+      <h2 className="addArticle-title">Dodavanje članka</h2>
       <form onSubmit={handleSubmit} className="addArticle-form">
         <div className="addArticle-formGroup">
           <label htmlFor="title" className="addArticle-label">
-            Title
+            Naslov
           </label>
           <input
             type="text"
@@ -86,7 +89,7 @@ function AddArticle() {
         </div>
         <div className="addArticle-formGroup">
           <label htmlFor="content" className="addArticle-label">
-            Content
+            Sadržaj
           </label>
           <textarea
             id="content"
@@ -99,7 +102,7 @@ function AddArticle() {
         </div>
         <div className="addArticle-formGroup">
           <label htmlFor="authorId" className="addArticle-label">
-            Author ID
+            ID autora
           </label>
           <input
             type="text"
@@ -112,7 +115,7 @@ function AddArticle() {
         </div>
         <div className="addArticle-formGroup">
       <label htmlFor="categoryId" className="addArticle-label">
-        Category
+        Kategorija
       </label>
       <select
         id="categoryId"
@@ -122,7 +125,7 @@ function AddArticle() {
         className="addArticle-input"
       >
         <option value="" disabled>
-          Select a category
+          Izaberite kategoriju
         </option>
         {categories.map((category) => (
           <option key={category.id} value={category.id}>
@@ -133,7 +136,7 @@ function AddArticle() {
     </div>
         <div className="addArticle-formGroup">
           <label htmlFor="image" className="addArticle-label">
-            Image
+            Slika
           </label>
           <input
             type="file"
@@ -144,7 +147,7 @@ function AddArticle() {
           />
         </div>
         <button type="submit" className="addArticle-button">
-          Submit
+          Dodaj
         </button>
       </form>
     </div>

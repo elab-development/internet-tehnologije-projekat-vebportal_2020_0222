@@ -16,6 +16,7 @@ import Articles from './components/article/Articles'
 import User from './components/user/User'
 import ShowUser from './components/user/ShowUser'
 import SearchedArticles from './components/article/SearchedArticles'
+import Footer from './components/footer/Footer'
 
 function App() {
   
@@ -40,9 +41,10 @@ function App() {
     <>
       <Router>
 
-      <div>
+      <div className="app">
 
         <NavBar isLoggedIn = {isLoggedIn} isAdmin={isAdmin}></NavBar>
+        <div className="content">
         <Routes>
 
           <Route path = "/" element = {<HomePage></HomePage>}></Route>
@@ -61,7 +63,8 @@ function App() {
           <Route path="/searchArticle" element = {<SearchedArticles></SearchedArticles>}></Route>
 
         </Routes>
-
+        </div>
+        <Footer></Footer>
         
       </div>
 
