@@ -5,8 +5,8 @@ const apiUrl = "http://localhost:8000/api/articles";
 export async function index(pageNumber) {
 
   let response;
-
-  if(pageNumber === 0 || pageNumber){
+  console.log("------------------------ pageNumber: " + pageNumber);
+  if(pageNumber === 0 || !pageNumber){
     response = await fetch(apiUrl, {
       method: "GET",
     });
@@ -108,7 +108,7 @@ export async function getArticlesByCategory(id,pageNumber) {
 
   let response;
 
-  if(pageNumber ===0 || pageNumber){
+  if(pageNumber ===0 || !pageNumber){
      response = await fetch(apiUrl + "/category/" + id, {
       method: "GET",
     });

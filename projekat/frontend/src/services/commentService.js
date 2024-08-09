@@ -108,7 +108,7 @@ export async function destroy(id) {
 }
 
 export async function showCommentByUserAndArticle(articleId, userId) {
-  const response = await fetch(apiUrl + "/" + articleId + "/" + userId, {
+  const response = await fetchWithAuth(apiUrl + "/check/" + articleId + "/" + userId, {
     method: "GET",
   });
 

@@ -23,7 +23,8 @@ function Articles() {
         const artikli = await getArticlesByCategory(id);
         setArticles(artikli.clanci.data);
       }
-
+      setPageNumber(2);
+      console.log("--------------Promena--------------");
       //const tabela = await getStandings(138, 53198);
       //setStandings(tabela.standings);
     }
@@ -51,15 +52,17 @@ function Articles() {
       setPageNumber((prev) => prev + 1);
       if(id === 0){
         const response = await index(pageNumber);
+        console.log("Uslo ovdje index!");
         loadedArticles = response.clanci.data;
       }
 
       else{
         const response = await getArticlesByCategory(id,pageNumber);
+        console.log("Uslo ovdje drugo!");
         loadedArticles = response.clanci.data;
       }
 
-      console.log(JSON.stringify(loadedArticles));
+      console.log("Dodati clanci:" + JSON.stringify(loadedArticles));
       setArticles([...articles, ...loadedArticles]);
     } catch (error) {
       alert(error.message);

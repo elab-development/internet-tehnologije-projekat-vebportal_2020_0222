@@ -6,15 +6,16 @@ use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Exception;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use PhpParser\Node\Stmt\TryCatch;
 
 class AuthController extends Controller
 {
 
     public function register(Request $request)
     {
-
         $data = $request->validate([
 
             'name' => 'required|string',
