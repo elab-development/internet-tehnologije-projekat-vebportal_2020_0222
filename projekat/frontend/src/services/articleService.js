@@ -108,16 +108,18 @@ export async function getArticlesByCategory(id,pageNumber) {
 
   let response;
 
-  if(pageNumber ===0 || !pageNumber){
+  if(pageNumber === 0 || !pageNumber){
      response = await fetch(apiUrl + "/category/" + id, {
       method: "GET",
     });
+    console.log("if: " + apiUrl + "/category/" + id);
   }
 
   else{
     response = await fetch(apiUrl + "/category/" + id + "?page=" + pageNumber, {
       method: "GET",
     });
+    console.log("else: " + apiUrl + "/category/" + id + "?page=" + pageNumber);
   }
 
   if (!response.ok) {

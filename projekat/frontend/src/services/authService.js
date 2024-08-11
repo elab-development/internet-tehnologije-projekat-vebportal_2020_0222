@@ -52,6 +52,8 @@ export async function register(user) {
 
   const data = await response.json();
 
+  console.log("Registracija: " + JSON.stringify(data));
+
   return data;
 }
 

@@ -13,6 +13,7 @@ function Articles() {
   const [articles, setArticles] = useState([]);
   const [standings, setStandings] = useState([]);
   const [pageNumber, setPageNumber] = useState(1);
+  const [showButton, setShowButton] = useState(true);
 
   useEffect(() => {
     async function fetchData() {
@@ -62,6 +63,10 @@ function Articles() {
         loadedArticles = response.clanci.data;
       }
 
+      if(loadedArticles.length === 0){
+        setShowButton(false);
+        return;
+      }
       console.log("Dodati clanci:" + JSON.stringify(loadedArticles));
       setArticles([...articles, ...loadedArticles]);
     } catch (error) {
@@ -81,12 +86,13 @@ function Articles() {
             <div>{/* <Standings standings={standings} /> */}</div>
             {renderArticles(articles.slice(3))}
             <div className="articles-button-containter">
-              <button
+            {showButton?<button
                 className="articles-button-show-more"
                 onClick={loadMoreArticles}
               >
                 Učitaj više
-              </button>
+              </button>:<></>}
+              
             </div>
           </>
         ) : (

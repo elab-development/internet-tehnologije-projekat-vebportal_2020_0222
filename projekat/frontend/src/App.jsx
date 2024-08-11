@@ -32,6 +32,13 @@ function App() {
       if(user.isAdmin){
         setIsAdmin(true);
       }
+      if(user.is_banned){
+        localStorage.removeItem("user");
+        localStorage.removeItem("token");
+        isLoggedIn(false);
+        isAdmin(false);
+        window.reload.location();
+      }
     }
 
     console.log('isLoggedIn: ' + isLoggedIn + " loggedInUser: " + loggedInUser + " isAdmin: " + isAdmin);

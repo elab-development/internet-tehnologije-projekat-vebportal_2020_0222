@@ -21,6 +21,10 @@ function Login({ setIsLoggedIn }) {
 
       const response = await login(emailAndPassword);
       const user = response.korisnik;
+      if(user.is_banned){
+        alert("Korisnik je banovan i ne može da se uloguje!");
+        return;
+      }
       const token = response.token;
       localStorage.setItem("token", token);
       localStorage.setItem("user", JSON.stringify(user));
