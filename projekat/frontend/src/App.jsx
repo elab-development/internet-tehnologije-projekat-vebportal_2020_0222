@@ -23,7 +23,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loggedInUser, setLoggedInUser] = useState(null);
   const [isAdmin, setIsAdmin] = useState(false);
-
+  const [isBanned, setIsBanned] = useState(false);
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
     if (user) {
@@ -37,12 +37,13 @@ function App() {
         localStorage.removeItem("token");
         isLoggedIn(false);
         isAdmin(false);
+        isBanned(true);
         window.reload.location();
       }
     }
 
     console.log('isLoggedIn: ' + isLoggedIn + " loggedInUser: " + loggedInUser + " isAdmin: " + isAdmin);
-  }, [isLoggedIn,isAdmin]);
+  }, [isLoggedIn,isAdmin,isBanned]);
 
   return (
     <>
@@ -51,6 +52,7 @@ function App() {
       <div className="app">
 
         <NavBar isLoggedIn = {isLoggedIn} isAdmin={isAdmin}></NavBar>
+        {!isBanned?
         <div className="content">
         <Routes>
 
@@ -70,7 +72,7 @@ function App() {
           <Route path="/searchArticle" element = {<SearchedArticles></SearchedArticles>}></Route>
 
         </Routes>
-        </div>
+        </div>:<h1>Korisnik je banovan!</h1>}
         <Footer></Footer>
         
       </div>

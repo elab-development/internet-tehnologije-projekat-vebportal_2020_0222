@@ -48,7 +48,6 @@ Route::get('/paginate/authors', [AuthorController::class, 'getAllAuthorsPaginati
 Route::resource('categories', CategoryController::class);
 
 //comments
-Route::put('izmeniKomentar/{id}', [CommentController::class, 'update']); //razmisliti
 Route::get('/comments/byArticleId/{id}', [CommentController::class, 'getAllCommentsByArticleId']);
 Route::get('/comments/mostPositive/{id}', [CommentController::class, 'getCommentsWithMostPositiveVotes']);
 Route::get('/comments/mostNegative/{id}', [CommentController::class, 'getCommentsWithMostNegativeVotes']);
@@ -59,8 +58,6 @@ Route::get('/comments/check/{article_id}/{user_id}',[CommentController::class, '
 Route::post('/auth/register', [AuthController::class, 'register']);
 Route::post('/auth/login', [AuthController::class, 'login']);
 
-//razno
-Route::put('/comments/{id}', [CommentController::class, 'update']);
 
 //Mejl
 Route::post('/mail',[MailController::class, 'sendWelcomeEmail']);

@@ -1,22 +1,19 @@
+import fetchWithAuth from "./authService";
+
 const apiUrl = "http://localhost:8000/api/user/";
 
-export async function banUser(userId){
+export async function banUser(userId) {
+  const response = await fetchWithAuth(apiUrl + "banUser/" + userId, {
+    method: "PATCH",
+  });
 
-    const response = await fetch(apiUrl+ "banUser/" + userId,{
-        method: "PATCH"
-    });
+  console.log("Ruta: " + apiUrl + "banUser/" + userId);
 
-    console.log("Ruta: " + apiUrl+ "banUser/" + userId);
+  if (!response.ok) {
+    throw new Error("Nije uspelo banovanje korisnika!");
+  }
 
-    if(!response.ok){
+  const data = await response.json();
 
-        
-        throw new Error(response.json().poruka);
-
-    }
-
-    const data = await response();
-
-    return data;
-
+  return data;
 }

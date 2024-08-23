@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\Comment;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class ArticleController extends Controller
 {
@@ -82,12 +83,6 @@ class ArticleController extends Controller
     }
 
 
-    public function update(Request $request, $id)
-    {
-
-        $article = Article::where('articles', $id)->first();
-    }
-
     public function destroy($id){
 
         $article = Article::where('article_id',$id)->first();
@@ -98,6 +93,12 @@ class ArticleController extends Controller
 
         }
 
+        $articles = Article::where('image_path',$article->image_path)->get();
+        $duzina = sizeof($articles);
+        if($duzina<2){
+            $image_path = $article->image_path;
+            Storage::disk('public')->delete($image_path);
+        }
         $article->delete();
 
         return response()->json(['status' => 'Uspesan']);
