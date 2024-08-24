@@ -37,6 +37,7 @@ function Articles() {
         setArticles(artikli.clanci.data);
       }
       setPageNumber(2);
+      setShowButton(true);
     }
 
     fetchData();

@@ -24,7 +24,7 @@ function Register() {
       };
       console.log(user);
       const response = await register(user);
-      //await sendWelcomeEmail(user);
+      await sendWelcomeEmail(user);
       console.log(response.korisnik);
       alert('Uspesan register');
       navigate('/Login');
