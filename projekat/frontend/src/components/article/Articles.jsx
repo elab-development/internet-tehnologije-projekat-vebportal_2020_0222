@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import { getArticlesByCategory, index } from "../../services/articleService";
 import Article from "./Article";
 import MainArticle from "./MainArticle";
+import useStandings from "../../customHooks/useStandings";
 import { useLocation } from "react-router-dom";
 import "./Articles.css";
+import Standings from "../standings/Standings";
 
 function Articles() {
   const location = useLocation();
@@ -14,7 +16,7 @@ function Articles() {
   const [tournamentId, setTournamentId] = useState(138);
   const [seasonId, setSeasonId] = useState(53198);
 
-  /* const {standings,loading,error} = useStandings({tournamentId,seasonId}); */
+   const {standings,loading,error} = useStandings({tournamentId,seasonId}); 
 
   useEffect(() => {
     async function fetchData() {
@@ -23,21 +25,18 @@ function Articles() {
         setArticles(artikli.clanci.data);
       } else {
         const artikli = await getArticlesByCategory(id);
-         if(id === 2){
+        if (id === 2) {
           setTournamentId(138);
           setSeasonId(53198);
-        }
-        else if(id === 3){
+        } else if (id === 3) {
           setTournamentId(141);
           setSeasonId(52934);
-        }
-        else{
+        } else {
           setTournamentId(0);
         }
         setArticles(artikli.clanci.data);
       }
       setPageNumber(2);
-
     }
 
     fetchData();
@@ -61,17 +60,15 @@ function Articles() {
     try {
       let loadedArticles;
       setPageNumber((prev) => prev + 1);
-      if(id === 0){
+      if (id === 0) {
         const response = await index(pageNumber);
         loadedArticles = response.clanci.data;
-      }
-
-      else{
-        const response = await getArticlesByCategory(id,pageNumber);
+      } else {
+        const response = await getArticlesByCategory(id, pageNumber);
         loadedArticles = response.clanci.data;
       }
 
-      if(loadedArticles.length === 0){
+      if (loadedArticles.length === 0) {
         setShowButton(false);
         return;
       }
@@ -90,13 +87,16 @@ function Articles() {
               <MainArticle article={articles[0]} />
             </div>
             {renderArticles(articles.slice(1, 3))}
-            {/* {loading ? (
+            {error ? (
+              <></>
+            ) : loading ? (
               <p>Učitavanje tabele...</p>
             ) : (
-              { <div>
+              <div>
                 <Standings standings={standings} />
-              </div> }
-            )} */}
+              </div>
+            )}
+
             {renderArticles(articles.slice(3))}
             <div className="articles-button-containter">
               {showButton ? (
@@ -115,7 +115,6 @@ function Articles() {
       </div>
     </div>
   );
-  
 }
 
 export default Articles;

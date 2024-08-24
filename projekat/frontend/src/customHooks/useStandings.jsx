@@ -20,6 +20,7 @@ function useStandings({tournamentId, seasonId}) {
                 setStandings(tabela.standings);
             } catch (error) {
                 setError(error.message);
+                setStandings([]);
             }
             setLoading(false);
         }
