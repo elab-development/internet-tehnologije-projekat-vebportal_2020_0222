@@ -84,7 +84,7 @@ function AddArticle() {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             required
-            className="addArticle-input"
+            className="addArticle-input-title"
           />
         </div>
         <div className="addArticle-formGroup">
@@ -122,7 +122,7 @@ function AddArticle() {
         value={categoryId}
         onChange={(e) => setCategoryId(e.target.value)}
         required
-        className="addArticle-input"
+        className="addArticle-input-category"
       >
         <option value="" disabled>
           Izaberite kategoriju

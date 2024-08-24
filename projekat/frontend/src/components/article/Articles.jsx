@@ -3,7 +3,6 @@ import { getArticlesByCategory, index } from "../../services/articleService";
 import Article from "./Article";
 import MainArticle from "./MainArticle";
 import { useLocation } from "react-router-dom";
-import { getStandings } from "../../services/rapidApiService";
 import Standings from "../standings/Standings";
 import "./Articles.css";
 import useStandings from "../../customHooks/useStandings";
@@ -17,7 +16,7 @@ function Articles() {
   const [tournamentId, setTournamentId] = useState(138);
   const [seasonId, setSeasonId] = useState(53198);
 
-  const {standings,loading,error} = useStandings({tournamentId,seasonId});
+  /* const {standings,loading,error} = useStandings({tournamentId,seasonId}); */
 
   useEffect(() => {
     async function fetchData() {
@@ -96,13 +95,13 @@ function Articles() {
               <MainArticle article={articles[0]} />
             </div>
             {renderArticles(articles.slice(1, 3))}
-            {loading ? (
+            {/* {loading ? (
               <p>Učitavanje tabele...</p>
             ) : (
-              <div>
+              { <div>
                 <Standings standings={standings} />
-              </div>
-            )}
+              </div> }
+            )} */}
             {renderArticles(articles.slice(3))}
             <div className="articles-button-containter">
               {showButton ? (

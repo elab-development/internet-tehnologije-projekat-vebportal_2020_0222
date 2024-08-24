@@ -52,7 +52,7 @@ function ShowUser() {
       <input type="text" value={user.email} readOnly className="showUser-input" />
       <label className="showUser-label">Username: </label>
       <input type="text" value={user.username} readOnly className="showUser-input" />
-      <button onClick={handleComments} className="showUser-button">Prikazi sve komentare korisnika</button>
+      <button onClick={handleComments} className="showUser-button">Prikaži sve komentare korisnika</button>
       <button onClick={() => banUserHandler(user.user_id)} className="showUser-button">Banuj korisnika</button>
       {comments && (
         <div className="showUser-comments" readOnly={flag}>
