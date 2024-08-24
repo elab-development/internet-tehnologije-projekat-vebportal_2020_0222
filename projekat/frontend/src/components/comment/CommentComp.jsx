@@ -17,10 +17,8 @@ function CommentComp({ comment }) {
     e.preventDefault();
     try {
       const comment2 = await addPositiveVotes(comment.comment_id);
-      console.log(JSON.stringify(comment2.komentari));
       setPositive(comment2.komentari.positive_votes);
     } catch (error) {
-      console.log(error.message);
       navigate("/login");
     }
   };
@@ -28,11 +26,9 @@ function CommentComp({ comment }) {
   const addNegativeVote = async (e) => {
     e.preventDefault();
     try {
-      console.log("Usao ovde!");
       await addNegativeVotes(comment.comment_id);
       setNegative((prev) => prev + 1);
     } catch (error) {
-      console.log(error.message);
       navigate("/login");
     }
   };
@@ -45,7 +41,6 @@ function CommentComp({ comment }) {
       return;
     }
     const user = comment.users;
-    console.log("Najnovije: " + JSON.stringify(user));
     navigate("/showUser", { state: { user } });
   };
 

@@ -2,7 +2,6 @@ const apiUrl = "http://localhost:8000/api/auth";
 
 const fetchWithAuth = async (url, options = {}) => {
   const token = localStorage.getItem("token");
-  console.log("Tokencina: " + token);
   const headers = {
     "Content-Type": "application/json",
     ...options.headers,
@@ -52,7 +51,6 @@ export async function register(user) {
 
   const data = await response.json();
 
-  console.log("Registracija: " + JSON.stringify(data));
 
   return data;
 }

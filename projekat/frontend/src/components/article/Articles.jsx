@@ -3,9 +3,7 @@ import { getArticlesByCategory, index } from "../../services/articleService";
 import Article from "./Article";
 import MainArticle from "./MainArticle";
 import { useLocation } from "react-router-dom";
-import Standings from "../standings/Standings";
 import "./Articles.css";
-import useStandings from "../../customHooks/useStandings";
 
 function Articles() {
   const location = useLocation();
@@ -65,13 +63,11 @@ function Articles() {
       setPageNumber((prev) => prev + 1);
       if(id === 0){
         const response = await index(pageNumber);
-        console.log("Uslo ovdje index!");
         loadedArticles = response.clanci.data;
       }
 
       else{
         const response = await getArticlesByCategory(id,pageNumber);
-        console.log("Uslo ovdje drugo!");
         loadedArticles = response.clanci.data;
       }
 
@@ -79,7 +75,6 @@ function Articles() {
         setShowButton(false);
         return;
       }
-      console.log("Dodati clanci:" + JSON.stringify(loadedArticles));
       setArticles([...articles, ...loadedArticles]);
     } catch (error) {
       alert(error.message);

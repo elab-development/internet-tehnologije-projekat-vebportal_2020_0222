@@ -5,7 +5,6 @@ const apiUrl = "http://localhost:8000/api/articles";
 export async function index(pageNumber) {
 
   let response;
-  console.log("------------------------ pageNumber: " + pageNumber);
   if(pageNumber === 0 || !pageNumber){
     response = await fetch(apiUrl, {
       method: "GET",
@@ -27,11 +26,11 @@ export async function store(article) {
     method: "POST",
     body: article,
   });
-  console.log("Usao 2!");
+
   if (!response.ok) {
     throw new Error("Neuspesno cuvanje artikla");
   }
-  console.log("Usao 3!");
+
   const data = await response.json();
 
   return data;
@@ -112,14 +111,12 @@ export async function getArticlesByCategory(id,pageNumber) {
      response = await fetch(apiUrl + "/category/" + id, {
       method: "GET",
     });
-    console.log("if: " + apiUrl + "/category/" + id);
   }
 
   else{
     response = await fetch(apiUrl + "/category/" + id + "?page=" + pageNumber, {
       method: "GET",
     });
-    console.log("else: " + apiUrl + "/category/" + id + "?page=" + pageNumber);
   }
 
   if (!response.ok) {

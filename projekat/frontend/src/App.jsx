@@ -42,7 +42,6 @@ function App() {
       }
     }
 
-    console.log('isLoggedIn: ' + isLoggedIn + " loggedInUser: " + loggedInUser + " isAdmin: " + isAdmin);
   }, [isLoggedIn,isAdmin,isBanned]);
 
   return (

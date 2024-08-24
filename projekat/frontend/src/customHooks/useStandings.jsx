@@ -15,15 +15,11 @@ function useStandings({tournamentId, seasonId}) {
                 return;
             }
             setLoading(true);
-            console.log("Pre try catch-a");
             try {
                 const tabela = await getStandings(tournamentId, seasonId);
-                console.log("Pre await: ");
                 setStandings(tabela.standings);
-                console.log("Stanje: " + JSON.stringify(standings) );
             } catch (error) {
                 setError(error.message);
-                console.log("Errorcina");
             }
             setLoading(false);
         }

@@ -13,7 +13,6 @@ function CommentView() {
   useEffect(() => {
     async function fetchData() {
       const comms = await getCommentsByArticleId(article.article_id);
-      console.log("Komentari" + JSON.stringify(comms.komentari));
       setComments(comms.komentari);
     }
 
@@ -24,10 +23,9 @@ function CommentView() {
     try {
       e.preventDefault();
       const positive = await getCommentsWithMostPositiveVotes(article.article_id);
-      console.log("Pozitiva: " + JSON.stringify(positive.komentari));
       setComments(positive.komentari);
     } catch (error) {
-      console.log(error.message);
+      alert(error.message);
     }
   }
 
@@ -35,7 +33,6 @@ function CommentView() {
     try {
       e.preventDefault();
       const negative = await getCommentsWithMostNegativeVotes(article.article_id);
-      console.log("Negativa: " + JSON.stringify(negative.komentari));
       setComments(negative.komentari);
     } catch (error) {
       alert(error.message);

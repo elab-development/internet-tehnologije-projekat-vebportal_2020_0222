@@ -17,7 +17,6 @@ function Login({ setIsLoggedIn }) {
         password: password,
       };
 
-      console.log("Email and password: " + JSON.stringify(emailAndPassword));
 
       const response = await login(emailAndPassword);
       const user = response.korisnik;
@@ -28,9 +27,6 @@ function Login({ setIsLoggedIn }) {
       const token = response.token;
       localStorage.setItem("token", token);
       localStorage.setItem("user", JSON.stringify(user));
-      console.log(
-        JSON.stringify(user) + " Ful paket: " + JSON.stringify(response)
-      );
       alert("Uspesno logovanje");
       setIsLoggedIn(true);
       navigate("/");

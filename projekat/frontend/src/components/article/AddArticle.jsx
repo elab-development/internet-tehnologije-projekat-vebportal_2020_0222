@@ -33,7 +33,6 @@ function AddArticle() {
         return;
       }
     }
-    console.log("Image is valid!");
     setImage(file);
   };
 
@@ -52,12 +51,9 @@ function AddArticle() {
     formData.append("author_id", authorId);
     formData.append("category_id", categoryId);
     formData.append("image", image);
-    console.log("Form data: " + formData);
-    console.log("JSON form data: " + JSON.stringify(formData));
     try {
       await show(authorId);
       const response = await store(formData);
-      console.log(JSON.stringify(response));
       setTitle("");
       setContent("");
       setPublishingDate("");

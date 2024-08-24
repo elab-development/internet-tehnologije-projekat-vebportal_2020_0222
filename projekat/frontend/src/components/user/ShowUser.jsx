@@ -21,7 +21,7 @@ function ShowUser() {
       setComments(comments.komentari);
       setFlag(true);
     } catch (error) {
-      console.error(error);
+      alert(error.message);
     }
   };
 

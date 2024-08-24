@@ -16,14 +16,12 @@ function AddComment() {
       e.preventDefault();
       const user = JSON.parse(localStorage.getItem("user"));
       setUserId(user.user_id);
-      console.log("User_id: " + user.user_id);
       const comment = {
         text: text,
         user_id: user.user_id,
         article_id: articleId,
       };
 
-      console.log("Comment: " + JSON.stringify(comment));
       await store(comment);
       const clanak = await show(articleId);
       const article = clanak.article;

@@ -7,7 +7,6 @@ export async function banUser(userId) {
     method: "PATCH",
   });
 
-  console.log("Ruta: " + apiUrl + "banUser/" + userId);
 
   if (!response.ok) {
     throw new Error("Nije uspelo banovanje korisnika!");

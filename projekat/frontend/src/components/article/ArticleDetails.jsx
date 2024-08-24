@@ -21,7 +21,6 @@ const ArticleDetails = () => {
     if (article.number_of_comments === 0) {
       return;
     }
-    console.log("Clanak: " + JSON.stringify(article));
     navigate("/commentsView", { state: { article } });
   };
 
