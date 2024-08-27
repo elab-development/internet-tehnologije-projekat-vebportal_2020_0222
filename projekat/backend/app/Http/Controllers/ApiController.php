@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Http;
 
 class ApiController extends Controller
 {
+    //poziva API koji vraca podatke za odredjena takmicenja
     public function getStandings($tournament_id, $season_id)
     {
 

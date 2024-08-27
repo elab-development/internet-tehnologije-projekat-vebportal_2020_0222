@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Storage;
 class ArticleController extends Controller
 {
 
+    //vraca sve clanke zajedno sa njihovim autorima i kategorijama i brojem komentara za taj clanak, sortirani prema ID clanka
     public function index()
     {
 
@@ -30,6 +31,7 @@ class ArticleController extends Controller
         return response()->json(['status' => 'Uspesan', 'clanci' => $articles,], 200);
     }
 
+    //cuvanje novog clanka u bazi
     public function store(Request $request)
     {
 
@@ -64,7 +66,7 @@ class ArticleController extends Controller
         return response()->json(['status' => 'Uspesan', 'clanci' => $article], 201);
     }
 
-
+    //prikazivanje clanka koji ima zadati ID
     public function show($id)
     {
 
@@ -82,7 +84,7 @@ class ArticleController extends Controller
         return response()->json(['status' => 'Uspesan', 'article' => $article], 200);
     }
 
-
+    //brisanje clanka sa tacno zadatim ID
     public function destroy($id){
 
         $article = Article::where('article_id',$id)->first();
@@ -105,6 +107,7 @@ class ArticleController extends Controller
 
     }
 
+    //vraca sve clanke, ali kroz paginaciju
     public function getAllArticlePagination()
     {
 
@@ -113,6 +116,7 @@ class ArticleController extends Controller
         return response()->json(['status' => 'Uspesan', 'clanci' => $articles]);
     }
 
+    //vraca poslednji objavljeni clanak
     public function getLatestArticle()
     {
 
@@ -125,7 +129,7 @@ class ArticleController extends Controller
         return  response()->json(['status' => 'Uspesan', 'clanak' => $article]);
     }
 
-
+    //vraca sve clanke zajedno sa njihovim autorom i kategorijom, prema ID kategorije, takodje paginacija
     public function getArticlesByCategory($id)
     {
 
@@ -143,6 +147,7 @@ class ArticleController extends Controller
         return  response()->json(['status' => 'Uspesan', 'clanci' => $articles]);
     }
 
+    //pretraga clanaka po naslovu
     public function searchArticles(Request $request){
 
         $search = $request->input('search');

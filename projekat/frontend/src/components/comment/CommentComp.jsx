@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   addNegativeVotes,
   addPositiveVotes,
@@ -12,6 +12,11 @@ function CommentComp({ comment }) {
   const [negative, setNegative] = useState(comment.negative_votes);
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("user"));
+
+  useEffect(()=>{
+    setPositive(comment.positive_votes);
+    setNegative(comment.negative_votes);
+  },[comment]);
 
   const addPositiveVote = async (e) => {
     e.preventDefault();
@@ -38,6 +43,9 @@ function CommentComp({ comment }) {
     const loggedUser = JSON.parse(localStorage.getItem("user"));
     if(!loggedUser){
       navigate("/login");
+      return;
+    }
+    else if(!loggedUser.isAdmin){
       return;
     }
     const user = comment.users;

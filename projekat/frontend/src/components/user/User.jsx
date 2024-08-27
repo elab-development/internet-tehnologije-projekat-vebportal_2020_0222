@@ -20,10 +20,10 @@ function User({ user, setIsLoggedIn, setLoggedInUser }) {
 
   return (
     <div className="user-container mt-4">
-      <h2 className="user-h2">User Details</h2>
+      <h2 className="user-h2">Detalji korisnika</h2>
       <form className="user-form">
         <div>
-          <label htmlFor="userId" className="user-label">User ID:</label>
+          <label htmlFor="userId" className="user-label">ID korisnika:</label>
           <input
             type="text"
             id="userId"
@@ -33,7 +33,7 @@ function User({ user, setIsLoggedIn, setLoggedInUser }) {
           />
         </div>
         <div>
-          <label htmlFor="firstName" className="user-label">Name:</label>
+          <label htmlFor="firstName" className="user-label">Ime:</label>
           <input
             type="text"
             id="firstName"
@@ -43,7 +43,7 @@ function User({ user, setIsLoggedIn, setLoggedInUser }) {
           />
         </div>
         <div>
-          <label htmlFor="surname" className="user-label">Surname:</label>
+          <label htmlFor="surname" className="user-label">Prezime:</label>
           <input
             type="text"
             id="surname"
@@ -53,7 +53,7 @@ function User({ user, setIsLoggedIn, setLoggedInUser }) {
           />
         </div>
         <div>
-          <label htmlFor="username" className="user-label">Username:</label>
+          <label htmlFor="username" className="user-label">Korisničko ime:</label>
           <input
             type="text"
             id="username"
@@ -67,7 +67,7 @@ function User({ user, setIsLoggedIn, setLoggedInUser }) {
           className="user-button"
           onClick={handleLogout}
         >
-          Logout
+          Odjavi se
         </button>
       </form>
     </div>

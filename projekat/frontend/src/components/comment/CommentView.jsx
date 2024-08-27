@@ -23,6 +23,7 @@ function CommentView() {
     try {
       e.preventDefault();
       const positive = await getCommentsWithMostPositiveVotes(article.article_id);
+      console.log("Pozitiva: " + JSON.stringify(positive));
       setComments(positive.komentari);
     } catch (error) {
       alert(error.message);
@@ -33,6 +34,7 @@ function CommentView() {
     try {
       e.preventDefault();
       const negative = await getCommentsWithMostNegativeVotes(article.article_id);
+      console.log("Negativac: " + JSON.stringify(negative));
       setComments(negative.komentari);
     } catch (error) {
       alert(error.message);

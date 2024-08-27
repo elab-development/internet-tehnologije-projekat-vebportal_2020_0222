@@ -94,6 +94,7 @@ class CommentController extends Controller
         return response()->json(['status'=> 'Uspesan', 'komentari' => $comments],200);
     }
 
+    //povecavanje pozitivnog glasa na komentaru za jedan
     public function addPositiveVotes($id){
 
         $comment = Comment::where('comment_id',$id)->first();
@@ -109,6 +110,7 @@ class CommentController extends Controller
         return response()->json(['status'=> 'Uspesan', 'komentari' => $comment],200);
     }
 
+    //povecanje negativnog glasa na komentaru za jedan
     public function addNegativeVotes($id){
 
         $comment = Comment::where('comment_id',$id)->first();
@@ -124,6 +126,7 @@ class CommentController extends Controller
         return response()->json(['status'=> 'Uspesan', 'komentari' => $comment],200);
     }
 
+    //vraca komentare sortirane po broju pozitivnih glasova
     public function getCommentsWithMostPositiveVotes($id){
 
         $comments = Comment::where('article_id',$id)->with('users','articles')->orderByDesc('positive_votes')->get();
@@ -137,6 +140,7 @@ class CommentController extends Controller
 
     }
 
+    //vraca komentare sortirane po broju negativnih glasova
     public function getCommentsWithMostNegativeVotes($id){
 
         $comments = Comment::where('article_id',$id)->with('users','articles')->orderByDesc('negative_votes')->get();
@@ -150,6 +154,7 @@ class CommentController extends Controller
 
     }
 
+    //vraca sve komentare za korisnika, prema ID korisnika
     public function getCommentsByUserId($id){
 
         $comments = Comment::where('user_id',$id)->with('users','articles')->get();
@@ -164,6 +169,7 @@ class CommentController extends Controller
 
     }
 
+    //vraca komentar za zadatog korisnika i za zadati clanak
     public function showCommentByUserAndArticle($article_id, $user_id){
 
         $comment = Comment::where('article_id',$article_id)->where('user_id',$user_id)->first();
