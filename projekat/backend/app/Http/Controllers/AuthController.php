@@ -16,34 +16,39 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-        $data = $request->validate([
 
-            'name' => 'required|string',
-            'surname' => 'required|string',
-            'username' => 'required|string|unique:users,username',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|string'
+        try{
+            $data = $request->validate([
 
-
-        ]);
-
-
-
-        $user = User::create([
-
-            'name' => $data['name'],
-            'surname' => $data['surname'],
-            'username' => $data['username'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'isAdmin' => false
-
-
-        ]);
-
-        $token = $user->createToken('token')->plainTextToken;
-
-        return response()->json(['status' => 'Uspesan', 'korisnik' => $user], 200);
+                'name' => 'required|string',
+                'surname' => 'required|string',
+                'username' => 'required|string|unique:users,username',
+                'email' => 'required|email|unique:users,email',
+                'password' => 'required|string'
+    
+    
+            ]);
+    
+    
+            $user = User::create([
+    
+                'name' => $data['name'],
+                'surname' => $data['surname'],
+                'username' => $data['username'],
+                'email' => $data['email'],
+                'password' => Hash::make($data['password']),
+                'isAdmin' => false
+    
+    
+            ]);
+    
+            $token = $user->createToken('token')->plainTextToken;
+    
+            return response()->json(['status' => 'Uspesan', 'korisnik' => $user], 200);
+        }catch(\Illuminate\Validation\ValidationException $e){
+            return response()->json(['status' => 'Neuspesan', 'errors' => $e->errors()], 422);
+        }
+        
     }
 
 

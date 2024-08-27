@@ -51,6 +51,7 @@ export async function register(user) {
 
   const data = await response.json();
 
+  console.log("Uspeo register!");
 
   return data;
 }
