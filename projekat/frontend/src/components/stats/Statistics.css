@@ -1,0 +1,38 @@
+.Statistics-div {
+    padding: 20px;
+    margin-top: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .Statistics-h2 {
+    font-size: 24px;
+    margin-bottom: 50px;
+    text-align: center;
+    color: #333;
+  }
+  
+  .Statistics-h3 {
+    font-size: 20px;
+    margin: 20px 0 10px;
+    color: #444;
+  }
+  
+  .Statistics-chart {
+    margin: 20px 0;
+  }
+  
+  .Statistics-p {
+    font-size: 16px;
+    text-align: center;
+    color: #555;
+  }
+  
+  .Statistics-pie-chart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+  }
+  

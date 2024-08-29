@@ -17,6 +17,7 @@ import User from './components/user/User'
 import ShowUser from './components/user/ShowUser'
 import SearchedArticles from './components/article/SearchedArticles'
 import Footer from './components/footer/Footer'
+import Statistics from './components/stats/Statistics'
 
 function App() {
   
@@ -61,6 +62,10 @@ function App() {
           <Route 
               path='/addArticle' 
               element={isAdmin ? <AddArticle /> : <Navigate to="/" />} 
+            />
+          <Route 
+              path='/statistics' 
+              element={isAdmin ? <Statistics /> : <Navigate to="/" />} 
             />
           <Route path='/articleDetails' element={<ArticleDetails></ArticleDetails>}></Route>
           <Route path='/commentsView' element={<CommentView></CommentView>}></Route>

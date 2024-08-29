@@ -18,6 +18,13 @@ function User({ user, setIsLoggedIn, setLoggedInUser }) {
     }
   };
 
+  const handleStats = (e) =>{
+
+    e.preventDefault();
+    navigate("/statistics");
+
+  }
+
   return (
     <div className="user-container mt-4">
       <h2 className="user-h2">Detalji korisnika</h2>
@@ -62,6 +69,13 @@ function User({ user, setIsLoggedIn, setLoggedInUser }) {
             className="user-input"
           />
         </div>
+        <button
+          type="button"
+          className="user-button"
+          onClick={handleStats}
+        >
+          Prikaži statistike
+        </button>
         <button
           type="button"
           className="user-button"

@@ -9,6 +9,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\StatsController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\UserController;
 use App\Models\Article;
@@ -32,7 +33,6 @@ use Illuminate\Support\Facades\Route;
 //articles
 Route::get('/articles/latest', [ArticleController::class, 'getLatestArticle']);
 Route::get('/vrati', [ArticleController::class, 'index']);
-Route::get('/articles/vrati', [ArticleController::class, 'getArticleByName']);
 Route::get('/articles/paginate', [ArticleController::class, 'getAllArticlePagination']);
 Route::resource('/articles', ArticleController::class);
 Route::get('/articles/category/{id}', [ArticleController::class, 'getArticlesByCategory']);
@@ -76,8 +76,12 @@ Route::middleware(['auth:sanctum', 'user'])->group(function () {
 
 //Admini
 Route::middleware(['auth:sanctum', 'admin'])->group(function () {
-    Route::get('/comments', [CommentController::class, 'index']);
     Route::get('/comments/byUserId/{id}', [CommentController::class, 'getCommentsByUserId']);
     Route::patch('user/banUser/{id}', [UserController::class, 'banUser']);
     Route::delete('/comments/{id}',[CommentController::class, 'destroy']);
+    //Statistike
+    Route::get('/stats/articles',[StatsController::class, 'getNumberOfArticlesPerCategory']);
+    Route::get('/stats/users',[StatsController::class, 'getNumberOfUsers']);
+    Route::get('/stats/admins',[StatsController::class, 'getNumberOfAdmins']);
+    Route::get('/stats/comments',[StatsController::class, 'getNumberOfCommentsByCategory']);
 });
