@@ -44,3 +44,13 @@ Pre preuzimanja, kloniranja ili pokretanja aplikacije, neophodno je instalirati 
 2. Klonirajte aplikaciju:
    ```bash
    git clone https://github.com/elab-development/internet-tehnologije-projekat-vebportal_2020_0222.git
+
+###Konfigurisanje Laravel fajlova
+cd projekat/backend
+composer install
+php artisan serve
+
+###Konfigurisanje React.js
+cd projekat/frontend
+npm install 
+npm start
