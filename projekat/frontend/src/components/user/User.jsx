@@ -69,13 +69,14 @@ function User({ user, setIsLoggedIn, setLoggedInUser }) {
             className="user-input"
           />
         </div>
+        {user.isAdmin?
         <button
           type="button"
           className="user-button"
           onClick={handleStats}
         >
           Prikaži statistike
-        </button>
+        </button>:<></>}
         <button
           type="button"
           className="user-button"

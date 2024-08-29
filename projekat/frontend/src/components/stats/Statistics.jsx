@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import {
   getNumberOfAdmins,
   getNumberOfArticlesPerCategory,
@@ -6,12 +6,15 @@ import {
   getNumberOfUsers,
 } from "../../services/statsService";
 import { Chart } from 'react-google-charts';
+import { jsPDF } from "jspdf";
+import html2canvas from "html2canvas";
 
 function Statistics() {
   const [numberOfArticles, setNumberOfArticles] = useState([]);
   const [numberOfUsers, setNumberOfUsers] = useState(null);
   const [numberOfAdmins, setNumberOfAdmins] = useState(null);
   const [numberOfComments, setNumberOfComments] = useState([]);
+  const chartsRef = useRef();
 
   useEffect(() => {
     async function fetchData() {
@@ -49,8 +52,22 @@ function Statistics() {
     ['Evrokup', numberOfComments.evrokup],
   ];
 
+  const handleExportToPDF = () => {
+    const doc = new jsPDF();
+    html2canvas(chartsRef.current).then((canvas) => {
+      const imgData = canvas.toDataURL("image/png");
+      const imgWidth = 190;
+      const pageHeight = 295;
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+      let position = 10;
+
+      doc.addImage(imgData, "PNG", 10, position, imgWidth, imgHeight);
+      doc.save("statistika.pdf");
+    });
+  };
+
   return (
-    <div className="Statistics-div">
+    <div className="Statistics-div" ref={chartsRef}>
       <h2 className="Statistics-h2">Statistika</h2>
       <h3 className="Statistics-h3">Broj Članaka po Kategoriji</h3>
       <div className="Statistics-chart">
@@ -106,6 +123,7 @@ function Statistics() {
           legendToggle
         />
       </div>
+      <button className="user-button" onClick={handleExportToPDF}>Izvezi u PDF</button>
     </div>
   );
 }

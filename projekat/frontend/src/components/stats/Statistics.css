@@ -35,4 +35,18 @@
     align-items: center;
     margin: 20px 0;
   }
+
+  .Statistics-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .Statistics-button:hover {
+    background-color: #45a049;
+  }
   
