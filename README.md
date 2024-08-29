@@ -46,11 +46,11 @@ Pre preuzimanja, kloniranja ili pokretanja aplikacije, neophodno je instalirati 
    git clone https://github.com/elab-development/internet-tehnologije-projekat-vebportal_2020_0222.git
 
 ###Konfigurisanje Laravel fajlova
-cd projekat/backend
-composer install
-php artisan serve
+- cd projekat/backend
+- composer install
+- php artisan serve
 
 ###Konfigurisanje React.js
-cd projekat/frontend
-npm install 
-npm start
+- cd projekat/frontend
+- npm install 
+- npm start
