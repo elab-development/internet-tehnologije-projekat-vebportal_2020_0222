@@ -16,7 +16,7 @@ function Articles() {
   const [tournamentId, setTournamentId] = useState(138);
   const [seasonId, setSeasonId] = useState(53198);
 
-   const {standings,loading,error} = useStandings({tournamentId,seasonId}); 
+   /* const {standings,loading,error} = useStandings({tournamentId,seasonId});  */
 
   useEffect(() => {
     async function fetchData() {
@@ -88,7 +88,7 @@ function Articles() {
               <MainArticle article={articles[0]} />
             </div>
             {renderArticles(articles.slice(1, 3))}
-            {error ? (
+            {/* {error ? (
               <></>
             ) : loading ? (
               <p>Učitavanje tabele...</p>
@@ -96,7 +96,7 @@ function Articles() {
               <div>
                 <Standings standings={standings} />
               </div>
-            )} 
+            )}  */}
 
             {renderArticles(articles.slice(3))}
             <div className="articles-button-containter">
