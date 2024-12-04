@@ -1,0 +1,128 @@
+.user-container {
+    max-width: 600px;
+    margin: 100px auto 0;
+    padding: 20px;
+    background-color: #f8f9fa; 
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .user-h2 {
+    text-align: center;
+    color: #333;
+  }
+  
+  .user-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .user-form div {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .user-form label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #555;
+    text-align: center;
+  }
+  
+  .user-form input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align: center;
+  }
+  
+  .user-button {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 15px;
+  }
+  
+  .user-button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* NavBar Styles */
+  .navbar-container {
+    position: relative;
+  }
+  
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .navbar-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 35px;
+  }
+  
+  .navbar-item {
+    margin: 0 15px;
+  }
+  
+  .navbar-link {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .navbar-link:hover {
+    background-color: #555;
+  }
+  
+  .navbar-title {
+    margin: 0;
+    font-size: 1.5rem;
+  }
+  
+  .navbar-search-form {
+    display: flex;
+    align-items: center;
+  }
+  
+  .navbar-search-input {
+    padding: 5px;
+    border: none;
+    border-radius: 4px;
+    margin-right: 10px;
+  }
+  
+  .navbar-search-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .navbar-search-button:hover {
+    background-color: #0056b3;
+  }
+  

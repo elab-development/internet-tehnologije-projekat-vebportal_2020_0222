@@ -1,0 +1,75 @@
+.addArticle-container {
+    padding: 20px;
+    margin-top: 60px;
+  }
+  
+  .addArticle-title {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #333;
+    font-weight: bold; 
+    text-align: center; 
+    text-transform: uppercase; 
+    letter-spacing: 2px; 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    padding-bottom: 10px; 
+  }
+  
+  
+  .addArticle-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .addArticle-formGroup {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .addArticle-label {
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  .addArticle-input-title{
+    width: 1000px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  .addArticle-input{
+    width: 400px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  .addArticle-input-category{
+    width: 420px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  .addArticle-textarea {
+    width: 1300px;
+    height: 200px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .addArticle-button {
+    background-color: #007bff;
+    width: 420px;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    
+  }
+  
+  .addArticle-button:hover {
+    background-color: #0056b3;
+  }
+  

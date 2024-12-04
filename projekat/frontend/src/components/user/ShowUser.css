@@ -1,0 +1,135 @@
+.showUser-container {
+    max-width: 600px;
+    margin: 100px auto 0;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .showUser-label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+  }
+  
+  .showUser-input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 15px;
+  }
+  
+  .showUser-button {
+    padding: 10px 20px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    transition: background-color 0.3s ease;
+  }
+  
+  .showUser-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .showUser-comments {
+    margin-top: 20px;
+  }
+  
+  .showUser-comment {
+    background-color: #fff;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .showUser-commentTitle {
+    cursor: pointer;
+    color: #007bff;
+  }
+  
+  .showUser-commentTitle:hover {
+    text-decoration: underline;
+  }
+  
+  /* Navbar Styles */
+  .navbar-container {
+    position: relative;
+  }
+  
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .navbar-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 35px;
+  }
+  
+  .navbar-item {
+    margin: 0 15px;
+  }
+  
+  .navbar-link {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .navbar-link:hover {
+    background-color: #555;
+  }
+  
+  .navbar-title {
+    margin: 0;
+    font-size: 1.5rem;
+  }
+  
+  .navbar-search-form {
+    display: flex;
+    align-items: center;
+  }
+  
+  .navbar-search-input {
+    padding: 5px;
+    border: none;
+    border-radius: 4px;
+    margin-right: 10px;
+  }
+  
+  .navbar-search-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .navbar-search-button:hover {
+    background-color: #0056b3;
+  }
+  
